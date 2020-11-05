@@ -43,6 +43,7 @@ public class HomeActivity extends BaseActivity {
 //        StatusBarUtil.transparencyBar(_mActivity);
         //初始默认首页
         //初始默认首页
+        //初始默认首页
         selected(R.id.stock_home);
         setTabValue(0);
     }
