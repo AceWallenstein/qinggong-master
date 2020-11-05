@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.national.qinggong">
+    <!-- 允许程序打开网络套接字 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 允许程序设置内置sd卡的写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 导航权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon_logn"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/icon_logn"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".ui.activity.PhotoViewActivity"></activity>
+        <activity android:name=".ui.activity.LiveAnchorDetailActivity" />
+        <activity android:name=".ui.activity.LiveEndActivity" />
+        <activity android:name=".ui.activity.LivePalyActivity" />
+        <activity android:name=".ui.activity.LiveActivity" />
+        <activity android:name=".ui.activity.TCVideoJoinChooseActivity" />
+        <activity android:name=".ui.activity.PlayVideoActivity" />
+        <activity android:name=".ui.activity.MyBroadcastActivity" />
+        <activity android:name=".ui.activity.MyBroadcastActivity2" />
+        <activity android:name=".ui.activity.AddVideoActivity" />
+        <activity android:name=".ui.activity.MyVideoActivity" />
+        <activity android:name=".ui.activity.LiveShopActivity" />
+        <activity android:name=".ui.activity.LiveShopSelectActivity" />
+        <!--创建直播-->
+        <activity android:name=".ui.activity.CreaterLiveActivity" />
+        <activity android:name=".ui.activity.MyLiveMainActivity" />
+        <activity android:name=".ui.activity.LivePlayListActivity" />
+        <activity android:name=".ui.activity.ChangePassword" /> <!-- <activity android:name=".HomeActivity"> -->
+        <activity android:name=".ui.activity.SplashMessageActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activity.MessageActivity" />
+        <activity android:name=".ui.activity.WebviewActivity" />
+        <activity
+            android:name=".ui.activity.PlatformForFragmentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".HomeActivity" />
+        <activity
+            android:name=".ui.activity.HomeLazzyActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".ui.activity.forgetPwsswordctivity" />
+        <activity android:name=".ui.activity.RegeditActivity" />
+        <activity android:name=".ui.activity.AppLoginActivity" />
+    </application>
+
+</manifest>

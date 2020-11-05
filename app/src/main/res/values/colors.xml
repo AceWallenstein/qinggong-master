@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="white">#ffffff</color>
+    <color name="hometabcorlor">#D10B17</color>
+    <color name="hometabfalse">#5D6575</color>
+
+    <color name="viewline">#E3E3E3</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_F2F2F2">#F2F2F2</color>
+    <color name="color_ff888888">#888888</color>
+    <color name="color_F5F5F5">#F5F5F5</color>
+    <color name="color_dddddd">#C2CBCA</color>
+    <color name="color_34933b">#34933b</color>
+    <color name="kViewblack">#181818</color>
+    <color name="subject_select">#E4C78B</color>
+    <color name="kViewztblack">#78797A</color>
+    <color name="transparent">#fff9f9f9</color>
+    <color name="color_ceaf7f">#ceaf7f</color>
+    <color name="color_272525">#272525</color>
+    <color name="color_e4c78b">#e4c78b</color>
+    <color name="text_comment">#666666</color>
+    <color name="text_f7f7f7">#f7f7f7</color>
+
+    <color name="black">#000000</color>
+    <color name="color_db2c1f">#db2c1f</color>
+    <color name="color_2D2D2D">#2D2D2D</color>
+    <color name="color_b0b0b0">#b0b0b0</color>
+    <color name="knowlegde_bar_color">#F4F4F4</color>
+    <color name="color_transparent">#00000000</color>
+
+    <color name="color_4D4C5A">#4D4C5A</color>
+    <color name="color_choose">#D10B17</color>
+    <color name="color_no_choose">#BDCDED</color>
+    <color name="color_red">#FF3B3D</color>
+    <color name="color_sort_cateage_bg">#FF3B3B</color>
+
+
+</resources>

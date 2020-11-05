@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_F5F5F5"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_title"></include>
+
+
+    <!--搜索-->
+    <LinearLayout
+        android:id="@+id/search_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_35dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/padding_15dp"
+        android:layout_marginTop="@dimen/padding_10dp"
+        android:layout_marginRight="@dimen/padding_15dp"
+        android:layout_marginBottom="@dimen/padding_5dp"
+        android:background="@drawable/drawable_search_white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:drawableLeft="@mipmap/search_gupiao"
+            android:drawablePadding="@dimen/padding_10dp"
+            android:gravity="center_vertical"
+            android:hint="搜索"
+            android:maxLength="30"
+            android:singleLine="true"
+            android:textColor="#999999"
+            android:textColorHint="#8c8c8c"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/search"
+            android:visibility="gone" />
+    </LinearLayout>
+
+
+    <!--
+
+    指数分析tab-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/analy_first_tab_recyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_5dp"
+        android:layout_marginTop="@dimen/padding_5dp"
+        android:layout_marginRight="@dimen/padding_5dp"
+        android:layout_marginBottom="@dimen/padding_5dp"
+        android:background="@color/white"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:visibility="visible" />
+
+    <include layout="@layout/include_analysis_second_tab"></include>
+    <!--指数分析列表-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_0dp"
+        android:background="@color/color_dddddd"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_1dp"
+        android:paddingTop="@dimen/padding_0.1dp"
+        android:paddingRight="@dimen/padding_1dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/analysic_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:visibility="visible" />
+    </LinearLayout>
+
+</LinearLayout>

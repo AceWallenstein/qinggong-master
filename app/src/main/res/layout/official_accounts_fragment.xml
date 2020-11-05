@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/include_title"></include>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/padding_25dp"
+                android:text="扫描二维码关注公众号"
+                android:textColor="@color/color_e4c78b"
+                android:textSize="@dimen/textSize_15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_24dp"
+                android:layout_marginTop="@dimen/padding_20dp"
+                android:layout_marginRight="@dimen/padding_24dp"
+                android:background="@mipmap/gongzhong_tt"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/padding_36dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/padding_25dp"
+                    android:text="国富民丰"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/textSize_18sp" />
+
+                <ImageView
+                    android:id="@+id/qr_image"
+                    android:layout_width="@dimen/padding_210dp"
+                    android:layout_height="@dimen/padding_210dp"
+                    android:layout_marginTop="@dimen/padding_21dp"
+                    android:drawablePadding="@dimen/padding_10dp"
+                    android:gravity="center"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/textSize_18sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="-1dp"
+                android:layout_marginLeft="@dimen/padding_24dp"
+                android:layout_marginRight="@dimen/padding_24dp"
+                android:background="@mipmap/gongzhong_bottom"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/padding_30dp"
+                android:paddingBottom="@dimen/padding_30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/weixin_sceen_con"
+                    android:textColor="@color/color_ff888888"
+                    android:textSize="@dimen/textSize_15sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/open_wechint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/padding_15dp"
+                android:layout_marginTop="@dimen/padding_20dp"
+                android:layout_marginRight="@dimen/padding_15dp"
+                android:layout_marginBottom="@dimen/padding_30dp"
+                android:background="@mipmap/save_bg"
+                android:gravity="center"
+                android:text="保存二维码并打开微信"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize_16sp" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

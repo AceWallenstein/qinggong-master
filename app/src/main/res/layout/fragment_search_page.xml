@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_page_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_15dp">
+
+            <ImageView
+                android:id="@+id/search_bg"
+                android:layout_width="@dimen/padding_25dp"
+                android:layout_height="@dimen/padding_25dp"
+                android:background="@mipmap/top_back_while" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_15dp"
+                android:text="Search"
+                android:textColor="#ffffffff"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_20dp"
+                android:background="@drawable/drawable_search_white"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_10dp">
+
+                <TextView
+                    android:id="@+id/cateage_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/search_cateage_jiantou"
+                    android:drawablePadding="@dimen/padding_10dp"
+                    android:padding="@dimen/padding_10dp"
+                    android:text="Product"
+                    android:textColor="#ff333333"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="@dimen/padding_1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/padding_20dp"
+                    android:layout_marginRight="@dimen/padding_20dp"
+                    android:background="#C0D0F0"></View>
+
+                <EditText
+                    android:id="@+id/input_search_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@null"
+                    android:hint="Search here"
+                    android:textColorHint="#ff9ba8c2"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/search_image"
+                    android:layout_width="@dimen/padding_25dp"
+                    android:layout_height="@dimen/padding_25dp"
+                    android:padding="@dimen/padding_10dp"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/search_page_bg" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <!--搜索历史 以及猜你喜欢-->
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding_15dp"
+                android:text="Record"
+                android:textColor="#ff333333"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/history_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_10dp"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/padding_8dp"></android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding_15dp"
+                android:text="Guess you may like"
+                android:textColor="#ff333333"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recommend_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_10dp"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/padding_8dp"></android.support.v7.widget.RecyclerView>
+
+
+            <com.national.qinggong.customview.EmptyLayout
+                android:id="@+id/emptyLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+            </com.national.qinggong.customview.EmptyLayout>
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

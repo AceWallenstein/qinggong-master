@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/padding_132dp"
+    android:layout_height="@dimen/padding_34dp"
+    android:background="#ffffffff"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tv_list_type"
+        style="?android:attr/spinnerItemStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:ellipsize="marquee"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:padding="@dimen/padding_5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:singleLine="true"
+        android:text="dd"
+        android:textColor="#828282"
+        android:textSize="13sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/tv_list_type"
+        android:background="#F5F5F5"></View>
+    <!--    <ImageView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/iv_tab_link_true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/iv_tablink_true"
+            android:visibility="invisible"
+            android:layout_marginRight="20dp" />-->
+
+</RelativeLayout>

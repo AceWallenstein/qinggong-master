@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.LivePlayListActivity">
+
+    <include layout="@layout/include_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginRight="@dimen/padding_10dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_height="@dimen/padding_150dp">
+
+        <com.zhengsr.viewpagerlib.view.BannerViewPager
+            android:id="@+id/loop_viewpager_mz"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:banner_isAutoLoop="true"
+            app:banner_iscycle="true"
+            app:banner_looptime="4000"
+            app:banner_switchtime="600"
+            app:banner_transformer="mz" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/lin_live"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Live"
+                android:textColor="#ffd20b17"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/v1"
+                android:layout_width="30dp"
+                android:layout_height="@dimen/padding_2dp"
+                android:layout_marginTop="3dp"
+                android:background="#ffd20b17" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_live_ann"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Announcement"
+                android:textColor="#333333"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/v2"
+                android:visibility="invisible"
+                android:layout_width="30dp"
+                android:layout_height="@dimen/padding_2dp"
+                android:layout_marginTop="3dp"
+                android:background="#ffd20b17" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_live_back"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv3"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Live Playback"
+                android:textColor="#333333"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/v3"
+                android:visibility="invisible"
+                android:layout_width="30dp"
+                android:layout_height="@dimen/padding_2dp"
+                android:layout_marginTop="3dp"
+                android:background="#ffd20b17" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+        android:id="@+id/twinkling_refreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/car_top_drawable"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/padding_4dp"
+            android:paddingRight="4dp" />
+
+        <com.national.qinggong.customview.EmptyLayout
+            android:id="@+id/emptyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+
+
+</LinearLayout>

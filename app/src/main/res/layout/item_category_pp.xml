@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/padding_5dp"
+    android:layout_marginRight="@dimen/padding_5dp">
+
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/padding_10dp"
+        android:paddingLeft="@dimen/padding_15dp"
+        android:paddingTop="@dimen/padding_5dp"
+        android:paddingRight="@dimen/padding_15dp"
+        android:paddingBottom="@dimen/padding_5dp"
+        android:text="苏州"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+</FrameLayout>

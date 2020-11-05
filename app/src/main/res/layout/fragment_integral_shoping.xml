@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_head_view"></include>
+
+
+    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+        android:id="@+id/twinkling_refreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_F5F5F5"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:id="@+id/search_top_rel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_180dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:clipChildren="false">
+
+            <com.zhengsr.viewpagerlib.view.BannerViewPager
+                android:id="@+id/loop_viewpager_mz"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:banner_isAutoLoop="true"
+                app:banner_iscycle="true"
+                app:banner_looptime="4000"
+                app:banner_switchtime="600"
+                app:banner_transformer="mz" />
+
+
+            <com.zhengsr.viewpagerlib.indicator.RectIndicator
+                android:id="@+id/normal_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginEnd="0dp"
+                app:rect_canMove="false"
+                app:rect_height="5dp"
+                app:rect_horizon_margin="10dp"
+                app:rect_normalColor="@color/color_no_choose"
+                app:rect_round_size="2dp"
+                app:rect_selectedColor="@color/color_choose"
+                app:rect_width="15dp" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_15dp"
+            android:background="@drawable/search_drawable"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/padding_15dp"
+            android:paddingTop="@dimen/padding_15dp"
+            android:paddingBottom="@dimen/padding_15dp">
+
+
+            <LinearLayout
+                android:id="@+id/jifen_mingxi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Credits"
+                    android:textColor="#ff727c8f"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/jifen_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_15dp"
+                    android:text="0"
+                    android:textColor="#ff333333"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/duihuan_jilu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/xiaoshouyuan_bg"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/padding_15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exchange Records"
+                    android:textColor="#ff727c8f"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_10dp"
+                    android:background="@mipmap/jifen_jiantou" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--积分列表-->
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_integral_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10dp"
+            android:background="#F5F7FA"
+            android:overScrollMode="never"
+            android:paddingRight="@dimen/padding_0dp"
+            android:scrollbars="none"
+            android:visibility="visible" />
+
+
+    </LinearLayout></com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+</LinearLayout>

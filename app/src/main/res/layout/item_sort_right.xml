@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/padding_10dp"
+    android:layout_marginBottom="@dimen/padding_10dp"
+    android:orientation="horizontal"
+    android:id="@+id/ll_item">
+    <ImageView
+        android:id="@+id/image_kuajing"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_140dp"
+        android:background="@color/white" />
+    <LinearLayout
+        android:id="@+id/commant_lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_15dp"
+        android:layout_marginRight="@dimen/padding_15dp"
+        android:visibility="gone"
+        android:background="@drawable/drawable_white_bg"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:layout_width="@dimen/padding_85dp"
+            android:layout_height="@dimen/padding_85dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="@dimen/padding_85dp"
+                android:layout_height="@dimen/padding_85dp"
+                android:background="@color/color_F5F5F5" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_85dp"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padding_15dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/shop_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Electric Motorc..."
+                    android:textColor="#ff333333"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@mipmap/home_new_bg"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/maidian_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_6dp"
+                android:layout_marginBottom="@dimen/padding_10dp"
+                android:text="DA JIANG"
+                android:textColor="#ffafbedb"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/chat_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn__angle_normal"
+                    android:paddingLeft="@dimen/padding_20dp"
+                    android:paddingTop="@dimen/padding_3dp"
+                    android:paddingRight="@dimen/padding_20dp"
+                    android:paddingBottom="@dimen/padding_3dp"
+                    android:text="Chat"
+                    android:textColor="#ffffffff"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/iv_shop_car"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/chat_tv"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="@dimen/padding_15dp"
+                    android:background="@mipmap/item_blace_car" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

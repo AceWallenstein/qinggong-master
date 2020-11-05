@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_F5F5F5"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/rl_back"
+        style="@style/toolbar_rl_size">
+
+        <ImageView
+            style="@style/toolbar_image"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/search_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_30dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="@dimen/padding_15dp"
+        android:background="@drawable/drawable_search_white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_5dp">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="搜索"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLength="30"
+            android:singleLine="true"
+            android:textColor="#999999"
+            android:textColorHint="#8c8c8c"
+            android:textSize="14sp"
+            tools:ignore="RtlHardcoded" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/search"
+            android:visibility="gone" />
+    </LinearLayout>
+</LinearLayout>

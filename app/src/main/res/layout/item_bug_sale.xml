@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#232232"
+    android:paddingTop="@dimen/padding_10dp"
+    android:paddingBottom="@dimen/padding_10dp">
+
+    <TextView
+        android:id="@+id/sale_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_10dp"
+        android:layout_weight="1"
+        android:text="卖10"
+        android:textColor="#999999"
+        android:textSize="@dimen/textSize_11sp" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="240"
+        android:textColor="#42BDB6"
+        android:textSize="@dimen/textSize_11sp" />
+
+    <TextView
+        android:id="@+id/liang"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/padding_10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="1253"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/textSize_11sp" />
+</LinearLayout>

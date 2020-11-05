@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_note_dialog_bg"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_25dp"
+                android:text="Fill in the address"
+                android:textColor="#ff333333"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_50dp"
+                android:layout_marginLeft="@dimen/padding_17dp"
+                android:layout_marginTop="@dimen/padding_25dp"
+                android:layout_marginRight="@dimen/padding_17dp"
+
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="User Name"
+                    android:textColor="#9BA8C2"
+                    android:textSize="@dimen/textSize_13sp" />
+
+                <EditText
+                    android:id="@+id/address_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@null"
+                    android:gravity="end|center"
+                    android:hint="consignee name"
+                    android:textColorHint="@color/color_333333"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/textSize_13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_1dp"
+                android:layout_marginLeft="@dimen/padding_17dp"
+                android:layout_marginRight="@dimen/padding_17dp"
+
+                android:background="#F5F7FA"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_50dp"
+                android:layout_marginLeft="@dimen/padding_17dp"
+                android:layout_marginRight="@dimen/padding_17dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Phone"
+                    android:textColor="#9BA8C2"
+                    android:textSize="@dimen/textSize_13sp" />
+
+                <EditText
+                    android:id="@+id/add_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@null"
+                    android:gravity="end|center"
+                    android:hint="Phone"
+                    android:inputType="number"
+                    android:textColorHint="@color/color_333333"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/textSize_13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_1dp"
+                android:layout_marginLeft="@dimen/padding_17dp"
+                android:layout_marginRight="@dimen/padding_17dp"
+
+                android:background="#F5F7FA"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_120dp"
+                android:layout_margin="@dimen/padding_15dp"
+                android:background="@drawable/xiaoshouyuan_bg"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_10dp">
+
+                <EditText
+                    android:id="@+id/input_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="start"
+                    android:hint="Fill in the detailed address"
+                    android:padding="@dimen/padding_5dp"
+                    android:textColor="#ff9ba8c2"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/submit_alert_dis"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_35dp"
+                android:layout_marginLeft="@dimen/padding_45dp"
+                android:layout_marginTop="@dimen/padding_28dp"
+                android:layout_marginRight="@dimen/padding_45dp"
+                android:background="@drawable/shop_detail_chat_bg"
+                android:gravity="center"
+                android:text="Cancel"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/submit_alert"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_35dp"
+                android:layout_marginLeft="@dimen/padding_45dp"
+                android:layout_marginTop="@dimen/padding_10dp"
+                android:layout_marginRight="@dimen/padding_45dp"
+                android:layout_marginBottom="@dimen/padding_28dp"
+                android:background="@drawable/shop_detail_car_bg"
+                android:gravity="center"
+                android:text="Submit"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

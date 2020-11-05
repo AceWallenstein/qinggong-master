@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:background="@mipmap/user_center_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <!--控制背景-->
+
+            <TextView
+                android:id="@+id/title_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_30dp"
+                android:layout_marginTop="@dimen/padding_55dp"
+                android:text="Information"
+                android:textColor="#212121"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <include
+                android:id="@+id/include_head"
+                layout="@layout/include_head_view" />
+            <!--内容布局-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/title_collect"
+                android:layout_marginTop="@dimen/padding_0dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_50dp"
+                    android:layout_marginLeft="@dimen/padding_30dp"
+                    android:layout_marginTop="@dimen/padding_30dp"
+                    android:layout_marginRight="@dimen/padding_30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:text="Head Portrait"
+                        android:textColor="#ff9ba8c2"
+                        android:textSize="17sp" />
+
+                    <com.gcssloop.widget.RCRelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        app:round_corner="@dimen/padding_25dp">
+
+                        <ImageView
+                            android:id="@+id/user_head"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/home_my" />
+                    </com.gcssloop.widget.RCRelativeLayout>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_1dp"
+                    android:layout_marginLeft="@dimen/padding_17dp"
+                    android:layout_marginTop="@dimen/padding_10dp"
+                    android:layout_marginRight="@dimen/padding_17dp"
+                    android:background="#F5F7FA" />
+
+
+                <!--用户名-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_50dp"
+                    android:layout_marginLeft="@dimen/padding_30dp"
+                    android:layout_marginTop="@dimen/padding_10dp"
+                    android:layout_marginRight="@dimen/padding_30dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:text="User Name"
+                        android:textColor="#ff9ba8c2"
+                        android:textSize="17sp" />
+
+
+                    <EditText
+                        android:id="@+id/user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="right|center"
+                        android:hint="Please enter"
+                        android:text=""
+                        android:textColor="#ff333333"
+                        android:textSize="17sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_1dp"
+                    android:layout_marginLeft="@dimen/padding_17dp"
+                    android:layout_marginTop="@dimen/padding_10dp"
+                    android:layout_marginRight="@dimen/padding_17dp"
+                    android:background="#F5F7FA"></View>
+
+
+                <!--用邮箱-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_55dp"
+                    android:layout_marginLeft="@dimen/padding_30dp"
+                    android:layout_marginTop="@dimen/padding_10dp"
+                    android:layout_marginRight="@dimen/padding_30dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:text="Mailbox"
+                        android:textColor="#ff9ba8c2"
+                        android:textSize="17sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/email_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity=""
+                            android:background="@null"
+                            android:gravity="right|center"
+                            android:textColor="#ff333333"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/youxiaoxing_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Non editing"
+                            android:textColor="#ffd20b17"
+                            android:textSize="13sp"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_1dp"
+                    android:layout_marginLeft="@dimen/padding_17dp"
+                    android:layout_marginTop="@dimen/padding_10dp"
+                    android:layout_marginRight="@dimen/padding_17dp"
+                    android:background="#F5F7FA"></View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_50dp"
+                    android:layout_marginLeft="@dimen/padding_30dp"
+                    android:layout_marginTop="@dimen/padding_10dp"
+                    android:layout_marginRight="@dimen/padding_30dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:text="Phone"
+                        android:textColor="#ff9ba8c2"
+                        android:textSize="17sp" />
+
+
+                    <EditText
+                        android:id="@+id/phone_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="center|right"
+                        android:hint="Please enter"
+                        android:text=""
+                        android:textColor="#ff333333"
+                        android:textSize="17sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_1dp"
+                    android:layout_marginLeft="@dimen/padding_17dp"
+                    android:layout_marginTop="@dimen/padding_10dp"
+                    android:layout_marginRight="@dimen/padding_17dp"
+                    android:background="#F5F7FA"></View>
+
+
+                <!--国家-->
+                <LinearLayout
+                    android:id="@+id/rel_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_50dp"
+                    android:layout_marginLeft="@dimen/padding_30dp"
+                    android:layout_marginTop="@dimen/padding_10dp"
+                    android:layout_marginRight="@dimen/padding_30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:text="Country"
+                        android:textColor="#ff9ba8c2"
+                        android:textSize="17sp" />
+
+
+                    <TextView
+                        android:id="@+id/contry_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableRight="@mipmap/fanhui_jiantou"
+                        android:drawablePadding="@dimen/padding_5dp"
+                        android:gravity="center|right"
+                        android:hint="Please select"
+                        android:text="sss"
+                        android:textColor="#ff333333"
+                        android:textSize="17sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_1dp"
+                    android:layout_marginLeft="@dimen/padding_17dp"
+                    android:layout_marginTop="@dimen/padding_10dp"
+                    android:layout_marginRight="@dimen/padding_17dp"
+                    android:background="#F5F7FA" />
+
+
+                <TextView
+                    android:id="@+id/submit_alert"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_35dp"
+                    android:layout_marginLeft="@dimen/padding_45dp"
+                    android:layout_marginTop="@dimen/padding_28dp"
+                    android:layout_marginRight="@dimen/padding_45dp"
+                    android:layout_marginBottom="@dimen/padding_28dp"
+                    android:background="@drawable/shop_detail_car_bg"
+                    android:gravity="center"
+                    android:text="Submit"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+            <!--内容布局 end-->
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

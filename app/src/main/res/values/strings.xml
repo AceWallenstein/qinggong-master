@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">ALIC MART</string>
+    <string name="stock_home">Home</string>
+    <string name="stock_wealth">Sort</string>
+    <string name="stock_Partner">素材</string>
+    <string name="stock_message">Message</string>
+    <string name="cart">Cart</string>
+    <string name="about">About</string>
+    <string name="open_account_first">第一步 \n信息采集</string>
+    <string name="open_account_second">第二步 \n风险测评</string>
+    <string name="open_account_third">第三步 \n绑定银行卡</string>
+    <string name="open_account_four">第四步\n 设置密码 </string>
+    <string name="my">我的</string>
+    <string name="message">消息</string>
+    <string name="kefu">客服</string>
+    <string name="renwu">任务</string>
+    <string name="hot_test">罕见！中银证券一场直播罕见！中银证券一场直播...</string>
+    <string name="attention_code">关注公众号</string>
+    <string name="recommend">推荐好友</string>
+    <string name="invite_friend">邀请好友开户</string>
+    <string name="about_">关于国富民丰</string>
+    <string name="one_min">1分</string>
+    <string name="five_min">5分</string>
+    <string name="fifteen_min">15分</string>
+    <string name="thirty_min">30分</string>
+    <string name="one_hour">1小时</string>
+    <string name="two_hour">2小时</string>
+    <string name="four_hour">4小时</string>
+    <string name="six_hour">6小时</string>
+    <string name="twelve_hour">12小时</string>
+    <string name="one_day">1日</string>
+    <string name="three_day">3日</string>
+    <string name="one_week">一周</string>
+
+
+    <string name="fenshi">分时</string>
+    <string name="ri_k">日k</string>
+    <string name="zhou_k">周k</string>
+    <string name="yue_k">月k</string>
+    <string name="fenzhong">分钟</string>
+
+
+    <string name="open_first">开户流程</string>
+    <string name="open_second">入金流程</string>
+    <string name="open_third">视频解答</string>
+
+    <string name="task_first">完成实名认证，账户安全有保障</string>
+    <string name="task_ward">增加认证奖励</string>
+
+    <string name="task_second">开户有好礼</string>
+    <string name="task_second_ward">增加开户奖励</string>
+
+    <string name="task_third">了解国富民丰</string>
+    <string name="task_third_ward">增加开户奖励</string>
+
+    <string name="task_fourth">手机号注册</string>
+    <string name="task_fourth_ward">赶快注册</string>
+
+    <string name="task_fiveth">参与新手活动</string>
+    <string name="task_fiveth_ward">赶快参加</string>
+    <string name="weixin_sceen_con">1.使用微信扫码查看商品 \n2.从相册选择二维码</string>
+
+    <string name="userhead">头像</string>
+    <string name="user_mingcheng">名称</string>
+    <string name="user_pass_alert">登录密码修改</string>
+    <string name="alert">修改</string>
+    <string name="share_app">邀请好友参与新手活动。%s：https://www.pgyer.com/54U4</string>
+    <string name="share">分享</string>
+
+    <string name="empty_message">Data is empty</string>
+    <string name="loading_message">请等一等啦ლ(╹◡╹ლ)</string>
+    <string name="error_message">哎呀！发生了一些错误</string>
+
+    <string name="empty_button">重试</string>
+    <string name="loading_button">取消</string>
+    <string name="error_button">重试</string>
+</resources>

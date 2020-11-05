@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    android:paddingBottom="@dimen/padding_10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="asdasdasd"
+        android:visibility="gone" />
+
+
+    <ImageView
+        android:id="@+id/img_robort_avart"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/text_lin"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="@dimen/padding_10dp"
+        android:background="@mipmap/userdefault"
+        android:scaleType="fitXY" />
+
+
+    <LinearLayout
+        android:id="@+id/text_lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_2dp"
+        android:layout_marginRight="60dp"
+        android:layout_toRightOf="@+id/img_robort_avart"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_chatcontent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:autoLink="web"
+            android:background="@drawable/duifang_sendbg"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="left|center"
+            android:lineSpacingExtra="2dp"
+            android:paddingLeft="15dip"
+            android:paddingTop="@dimen/padding_10dp"
+            android:paddingRight="@dimen/padding_15dp"
+            android:paddingBottom="@dimen/padding_10dp"
+            android:text="fddffdfd"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_14sp" />
+
+        <TextView
+            android:id="@+id/left_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_10dp"
+            android:layout_marginTop="@dimen/padding_5dp"
+            android:text="02:39 pm"
+            android:textColor="#ff9ba8c2"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

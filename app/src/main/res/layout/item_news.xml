@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_19dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/new_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BELARUS CONSUL-GENERAL VISITED..."
+            android:textColor="#ff333333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/new_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_5dp"
+            android:layout_marginBottom="@dimen/padding_5dp"
+            android:text="2020-07-03"
+            android:textColor="#ff9ba8c2"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/new_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consul-General Mr.Matsel Valeriy of Consulate General of the Republic of Belarus in Shanghai visited..."
+            android:textColor="#ff727c8f"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_1dp"
+        android:layout_marginLeft="@dimen/padding_17dp"
+        android:layout_marginTop="@dimen/padding_10dp"
+        android:layout_marginRight="@dimen/padding_17dp"
+        android:background="#F5F7FA"></View>
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="tab_content">
+        <item>Export\nProducts</item>
+        <item>Import\nProducts  </item>
+        <item>Cross border\nE-commerce </item>
+    </array>
+    <array name="tab_time_tab">
+        <item>分时</item>
+        <item>日k</item>
+        <item>周k</item>
+        <item>月k</item>
+        <item>分钟 </item>
+    </array>
+
+    <array name="pop_time_tab">
+        <item>5分钟</item>
+        <item>15分钟</item>
+        <item>30分钟</item>
+        <item>60分钟</item>
+        <item>120分钟</item>
+        <item>240分钟</item>
+
+    </array>
+
+
+    <array name="pop_tafget_title">
+        <item>顺势而为</item>
+        <item>波段追踪</item>
+        <item>多空追击</item>
+        <item>高低立判</item>
+        <item>牛熊警戒 </item>
+        <item>多空分界 </item>
+    </array>
+
+
+
+
+</resources>

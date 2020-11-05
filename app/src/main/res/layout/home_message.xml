@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/right_now_open_account"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_35dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="@dimen/padding_10dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/btn__angle_normal"
+        android:gravity="center"
+        android:text="立即开户"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+    <Button
+        android:id="@+id/activity_info"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_35dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="@dimen/padding_10dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/btn__angle_normal"
+        android:gravity="center"
+        android:text="活动列表"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/sale_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:padding="@dimen/padding_5dp"
+        android:layout_marginTop="@dimen/padding_10dp"
+        android:gravity="center"
+        android:text="系统公告"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/textSize_17sp" />
+</LinearLayout>

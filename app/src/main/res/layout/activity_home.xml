@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="61dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <!--首页-->
+        <LinearLayout
+            android:id="@+id/stock_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/selector_stock_home" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:text="@string/stock_home"
+
+                android:textColor="@color/selector_stock_item_text"
+                android:textSize="@dimen/textSize_12sp" />
+        </LinearLayout>
+        <!--行情-->
+        <LinearLayout
+            android:id="@+id/stock_wealth"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/select_zhishu" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:text="@string/stock_wealth"
+
+                android:textColor="@color/selector_stock_item_text"
+
+                android:textSize="@dimen/textSize_12sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/message_home"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/select_my" />
+
+                <TextView
+android:layout_alignParentRight="true"
+                    android:id="@+id/xiaoxi_num"
+                    android:layout_width="@dimen/padding_15dp"
+                    android:layout_height="@dimen/padding_15dp"
+                    android:layout_alignRight="@+id/daipaidan"
+                    android:background="@drawable/red_circle"
+                    android:gravity="center"
+                    android:text="0"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:text="@string/stock_message"
+                android:textColor="@color/selector_stock_item_text"
+                android:textSize="@dimen/textSize_12sp" />
+        </LinearLayout>
+
+
+        <!--购物车-->
+        <LinearLayout
+            android:id="@+id/car_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/drawable_car" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:text="@string/cart"
+                android:textColor="@color/selector_stock_item_text"
+
+                android:textSize="@dimen/textSize_12sp" />
+        </LinearLayout>
+        <!--关于-->
+        <LinearLayout
+            android:id="@+id/stock_mine"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/drawable_about" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:text="@string/about"
+                android:textColor="@color/selector_stock_item_text"
+
+                android:textSize="@dimen/textSize_12sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

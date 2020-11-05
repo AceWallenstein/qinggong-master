@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/padding_50dp"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    >
+    <View
+        android:background="@color/viewline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+<LinearLayout
+    android:padding="@dimen/padding_10dp"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/send_image"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:src="@mipmap/camera_send" />
+
+
+    <EditText
+        android:id="@+id/input_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/padding_15dp"
+        android:layout_weight="4"
+        android:background="@null"
+        android:hint="Type here"
+        android:padding="@dimen/padding_5dp"
+        android:textSize="@dimen/textSize_14sp" />
+
+    <ImageView
+        android:id="@+id/send_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_15dp"
+        android:background="@mipmap/send_message" />
+</LinearLayout>
+
+
+</LinearLayout>

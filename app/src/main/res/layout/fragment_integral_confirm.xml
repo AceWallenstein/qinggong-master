@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include_head"
+        layout="@layout/include_head_view"></include>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_tab"
+        android:layout_below="@+id/include_head">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/add_new_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/padding_15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/padding_15dp"
+                android:background="@drawable/drawable_integral_confirm"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/padding_15dp"
+                android:paddingRight="@dimen/padding_15dp">
+
+                <TextView
+                    android:id="@+id/user_address_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_15dp"
+                    android:drawableRight="@mipmap/add_address_jiantou"
+                    android:drawablePadding="@dimen/padding_15dp"
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:text="Please fill in the receiver information "
+                    android:textColor="#ff333333"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_10dp"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/yuanjiaojuxing"
+                        android:gravity="center"
+                        android:padding="@dimen/padding_3dp"
+                        android:text="Default"
+                        android:textColor="#ffffffff"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/user_address_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding_10dp"
+                        android:text="Please fill in the address"
+                        android:textColor="#ff9ba8c2"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_1dp"
+                    android:layout_marginTop="@dimen/padding_20dp"
+                    android:background="#F0F2F5"></View>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_15dp"
+                android:layout_marginRight="@dimen/padding_15dp"
+                android:background="@mipmap/integral_xinfegntiao" />
+            <!--商品信息-->
+            <LinearLayout
+                android:id="@+id/shop_list_lin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_margin="@dimen/padding_15dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
+            <!--<include layout="@layout/item_integral_confirm_shop"></include>-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_6dp"
+                android:background="#F5F7FA"></View>
+            <!--商品细则-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/detail_shop"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+
+            </LinearLayout>
+
+            <!--留言-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_80dp"
+                android:layout_margin="@dimen/padding_15dp"
+                android:background="@drawable/drawable_search_white"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/input_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="start"
+                    android:textColor="#9BA8C2"
+                    android:hint="Leaving a message"
+                    android:textColorHint="#9BA8C2"
+                    android:padding="@dimen/padding_10dp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/bottom_tab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_55dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_5dp"
+        android:paddingLeft="@dimen/padding_15dp"
+        android:paddingRight="@dimen/padding_15dp">
+
+        <LinearLayout
+            android:layout_width="@dimen/padding_0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center|left">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Credits："
+                android:textColor="#ff333333"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/jifen_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#ffd20b17"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/submit_order"
+            android:layout_width="@dimen/padding_0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="@drawable/shop_detail_car_bg"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit Order"
+                android:textColor="#ffffffff"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

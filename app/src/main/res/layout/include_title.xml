@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/lin_title"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lin_content"
+        style="@style/toolbar_content_size">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rl_back"
+                style="@style/toolbar_rl_size">
+
+                <ImageView
+                    style="@style/toolbar_image"
+                    android:layout_centerInParent="true" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/toolbar_title"
+                android:layout_gravity="center"
+                android:text="" />
+
+            <LinearLayout
+                android:id="@+id/title_search_lin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="right|center"
+                android:gravity="center"
+                android:visibility="gone"
+                android:paddingLeft="@dimen/padding_14dp"
+                android:paddingRight="@dimen/padding_14dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/search_bg" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/target_rela"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right|center"
+                android:layout_marginRight="@dimen/padding_15dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <TextView
+                    android:id="@+id/target_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/target_bg"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/padding_7dp"
+                    android:paddingRight="@dimen/padding_7dp"
+                    android:text="特色指标"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize_12sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:src="@mipmap/hot" />
+
+            </RelativeLayout>
+
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#E5E5E5" />
+</LinearLayout>

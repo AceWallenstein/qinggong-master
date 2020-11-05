@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:round_corner="15dp"
+    android:orientation="vertical">
+    <com.gcssloop.widget.RCRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:round_corner="13dp">
+        <LinearLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/im_loading"
+                android:layout_marginTop="20dp"
+                style="@style/SpinKitView.Large.Circle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                app:SpinKit_Color="@color/color_red"
+                app:layout_constraintVertical_bias="0.449" />
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:textColor="@color/color_333333"
+                tools:text="Loading……" />
+        </LinearLayout>
+    </com.gcssloop.widget.RCRelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lin_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.national.qinggong.util.LCardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_120dp"
+        android:layout_gravity="center_vertical"
+        app:bottomShadowHeight="@dimen/padding_10dp"
+        app:cornerRadius="3dp"
+        app:leftShadowWidth="@dimen/padding_10dp"
+        app:rightShadowWidth="@dimen/padding_10dp"
+        app:shadowColor="#000"
+        app:shadowFluidShape="adsorption"
+        app:shadowStartAlpha="10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/image_hot"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_63dp"
+                android:layout_gravity="center_horizontal"
+
+                />
+
+            <TextView
+                android:id="@+id/title_hot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding_5dp"
+                android:text=""
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/textSize_11sp" />
+
+        </LinearLayout>
+    </com.national.qinggong.util.LCardView>
+</LinearLayout>

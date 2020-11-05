@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/head_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/includeinput"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/include_head_view"/>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="@dimen/textSize_16sp"
+                android:textColor="@color/superplayer_black"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+            android:id="@+id/twinkling_refreshlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/car_top_drawable"
+            android:focusable="true"
+            android:layout_weight="1"
+            android:focusableInTouchMode="true">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/consult_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/padding_10dp"
+                android:background="@color/white"
+                android:overScrollMode="never"
+                android:paddingRight="@dimen/padding_0dp"
+                android:scrollbars="none"
+                android:visibility="visible" />
+        </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/includeinput"
+        layout="@layout/include_bottom_send_text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_50dp"
+        android:layout_alignParentBottom="true"></include>
+</RelativeLayout>

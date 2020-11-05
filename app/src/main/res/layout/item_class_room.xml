@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!--android:background="@drawable/circle_drawable"-->
+    <com.national.qinggong.util.LCardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        app:cornerRadius="3dp"
+        app:shadowColor="#000"
+        app:shadowFluidShape="adsorption"
+        app:leftShadowWidth="@dimen/padding_10dp"
+        app:rightShadowWidth="@dimen/padding_10dp"
+        app:bottomShadowHeight="@dimen/padding_15dp"
+        app:shadowStartAlpha="10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/class_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_112dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/class_room_default" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/class_icon"
+                    android:layout_marginLeft="@dimen/padding_7dp"
+                    android:layout_marginTop="@dimen/padding_10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="罕见！中银证券一场直播..."
+                        android:textColor="#ff333333"
+                        android:textSize="12sp" />
+
+
+                    <!--精品课程 零基础分类-->
+                    <LinearLayout
+                        android:id="@+id/lin_tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/view_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_11dp"
+                        android:layout_marginBottom="@dimen/padding_11dp"
+                        android:drawableLeft="@mipmap/stydy_num"
+                        android:drawablePadding="@dimen/padding_7dp"
+                        android:text=""
+                        android:textColor="#ff888888"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </com.national.qinggong.util.LCardView>
+</LinearLayout>

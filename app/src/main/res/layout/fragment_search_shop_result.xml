@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_head_view"></include>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_15dp">
+
+        <TextView
+            android:id="@+id/user_ecit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shop_detail_chat_bg"
+            android:drawableRight="@mipmap/cateage_jiantou"
+            android:drawablePadding="@dimen/padding_10dp"
+            android:gravity="center"
+            android:paddingLeft="@dimen/padding_15dp"
+            android:paddingTop="@dimen/padding_10dp"
+            android:paddingRight="@dimen/padding_15dp"
+            android:paddingBottom="@dimen/padding_10dp"
+            android:text="All Categories"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:id="@+id/go_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/fanhui_home" />
+    </RelativeLayout>
+
+
+    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+        android:id="@+id/twinkling_refreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/shop_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10dp"
+            android:background="@color/white"
+            android:paddingLeft="@dimen/padding_8dp"></android.support.v7.widget.RecyclerView>
+
+        <com.national.qinggong.customview.EmptyLayout
+            android:id="@+id/emptyLayout"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="match_parent">
+
+
+
+        </com.national.qinggong.customview.EmptyLayout>
+
+
+    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+</LinearLayout>
