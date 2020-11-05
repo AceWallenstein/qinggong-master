@@ -25,7 +25,6 @@ import me.yokeyword.fragmentation.SupportFragment;
 /*管理fragement*/
 public class HomeActivity extends BaseActivity {
 
-
     @BindViews({R.id.stock_home, R.id.stock_wealth, R.id.stock_mine})
     List<LinearLayout> linetabs;
     private SupportFragment[] mFragments = new SupportFragment[3];
