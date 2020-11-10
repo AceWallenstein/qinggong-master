@@ -208,7 +208,9 @@ public class WebviewActivity extends BaseActivity implements PlatformWebDeatilCo
 
     public void setData(String content, String createtime, String views_num) {
         webview_content.setText(content);
-        time.setText(createtime);
+        String times[]=createtime.split("-");
+        time.setText( times[2] + "-"+times[1]+"-"+times[0]);
+        //time.setText(createtime);
         study_people.setText(views_num);
     }
 
