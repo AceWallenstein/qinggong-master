@@ -17,9 +17,11 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.national.qinggong.R;
 import com.national.qinggong.bean.LiveRoomDetailBean;
 import com.national.qinggong.ui.activity.LivePalyActivity;
+import com.national.qinggong.ui.activity.VisitsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +44,8 @@ public class GoodPopupWindow extends PopupWindow {
     private RecyclerView rcv_good;
     private MyGoodAdapter adapter;
 
-    private List<LiveRoomDetailBean.DataBean.DetailBean.GoodsBean>  list=new ArrayList<>();
-    public void setData(List<LiveRoomDetailBean.DataBean.DetailBean.GoodsBean>  list){
+    private List<LiveRoomDetailBean.DataBean.DetailBean.GoodsBeanX>  list=new ArrayList<>();
+    public void setData(List<LiveRoomDetailBean.DataBean.DetailBean.GoodsBeanX>  list){
         if (this.list.size()==0){
             this.list.addAll(list);
         }
@@ -51,20 +53,9 @@ public class GoodPopupWindow extends PopupWindow {
 
 
     public GoodPopupWindow(Context mContext, View.OnClickListener itemsOnClick) {
+        this.mContext=mContext;
 
         this.view = LayoutInflater.from(mContext).inflate(R.layout.layout_popupwindow, null);
-
-        /*DisplayMetrics outMetrics = new DisplayMetrics();
-
-        ((LivePalyActivity)mContext).getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
-        //int widthPixels = outMetrics.widthPixels;
-        int heightPixels = outMetrics.heightPixels;
-
-        *//* 设置弹出窗口特征 *//*
-        // 设置视图
-        this.setContentView(this.view);
-        // 设置弹出窗体的宽和高
-        this.setHeight(heightPixels/3*2);*/
 
         rcv_good = (RecyclerView) view.findViewById(R.id.rcv_good);
 
@@ -72,7 +63,6 @@ public class GoodPopupWindow extends PopupWindow {
         adapter = new MyGoodAdapter(mContext);
         rcv_good.setAdapter(adapter);
 
-        //btn_take_photo = (Button) view.findViewById(R.id.btn_take_photo);
         //btn_pick_photo = (Button) view.findViewById(R.id.btn_pick_photo);
         //btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
         // 取消按钮
@@ -84,7 +74,6 @@ public class GoodPopupWindow extends PopupWindow {
             }
         });*/
         // 设置按钮监听
-        //btn_pick_photo.setOnClickListener(itemsOnClick);
         //btn_take_photo.setOnClickListener(itemsOnClick);
 
         // 设置外部可点击
@@ -123,6 +112,20 @@ public class GoodPopupWindow extends PopupWindow {
         // 设置弹出窗体显示时的动画，从底部向上弹出
         this.setAnimationStyle(R.style.take_photo_anim);
 
+
+
+    }
+
+
+    public PopwindowClickListening listening;
+
+    public void setListening(PopwindowClickListening listening) {
+        this.listening = listening;
+    }
+
+    public interface PopwindowClickListening {
+        void addCar(String id);
+        void goodDetail(String id);
     }
 
 
@@ -148,19 +151,27 @@ public class GoodPopupWindow extends PopupWindow {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
             ViewHolder viewHolder = (ViewHolder) holder;
 
-            //viewHolder.tv_end_hour.setText(list.get(position).extime_hi);
+            viewHolder.tv_good_name.setText(list.get(position).getGoods().getGoods_name());
+            viewHolder.tv_type.setText(list.get(position).getGoods().getNumber());
+            viewHolder.tv_number.setText(list.get(position).getGoods().getNumber());
+            Glide.with(mContext).load(list.get(position).getGoods().getLogo()).into(viewHolder.iv_good);
 
 
-            /*viewHolder.ll_item.setOnClickListener(e -> {
-
-            });*/
-
-
-
-
+            viewHolder.tv_detail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listening.goodDetail(list.get(position).getGoods_id()+"");
+                }
+            });
+            viewHolder.iv_add_car.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listening.addCar(list.get(position).getGoods_id()+"");
+                }
+            });
         }
 
         @Override
@@ -179,8 +190,18 @@ public class GoodPopupWindow extends PopupWindow {
 
             @BindView(R.id.ll_item)
             LinearLayout ll_item;
-            //@BindView(R.id.tv_zhangchang)
-            //TextView tv_zhangchang;
+            @BindView(R.id.iv_good)
+            ImageView iv_good;
+            @BindView(R.id.iv_add_car)
+            ImageView iv_add_car;
+            @BindView(R.id.tv_good_name)
+            TextView tv_good_name;
+            @BindView(R.id.tv_type)
+            TextView tv_type;
+            @BindView(R.id.tv_detail)
+            TextView tv_detail;
+            @BindView(R.id.tv_number)
+            TextView tv_number;
 
             public ViewHolder(View itemView) {
                 super(itemView);

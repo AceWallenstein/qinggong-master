@@ -3,34 +3,30 @@ package com.national.qinggong.ui.activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.anbetter.danmuku.DanMuView;
 import com.bumptech.glide.Glide;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.national.qinggong.R;
 import com.national.qinggong.adapter.JoneBaseAdapter;
 import com.national.qinggong.base.BaseActivity;
+import com.national.qinggong.bean.DeleteCarBean;
 import com.national.qinggong.bean.LivePeopleBean;
 import com.national.qinggong.bean.LiveRoomDetailBean;
 import com.national.qinggong.bean.LiveRoomGetTalkBean;
 import com.national.qinggong.dialog.GoodPopupWindow;
 import com.national.qinggong.dialog.OnDialogClickListener;
 import com.national.qinggong.dialog.dialog.TCInputTextMsgDialog;
-import com.national.qinggong.dialog.dialog.custom.AddUserAddressDialog;
 import com.national.qinggong.dialog.dialog.custom.LivePlayDialog;
 import com.national.qinggong.request.API;
 import com.national.qinggong.request.RequestManager;
@@ -44,11 +40,12 @@ import com.tencent.rtmp.TXLivePlayConfig;
 import com.tencent.rtmp.TXLivePlayer;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
 import butterknife.BindView;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
@@ -58,11 +55,10 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-
 import static com.tencent.rtmp.TXLiveConstants.PLAY_ERR_NET_DISCONNECT;
 import static com.tencent.rtmp.TXLiveConstants.RENDER_MODE_FULL_FILL_SCREEN;
 
-public class LivePalyActivity extends BaseActivity implements ITXLivePlayListener {
+public class LivePalyActivity extends BaseActivity implements ITXLivePlayListener{
     @BindView(R.id.video_view)
     TXCloudVideoView video_view;
 
@@ -127,6 +123,21 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
         heade=getIntent().getStringExtra("avatarUrl");
 
         goodPopupWindow = new GoodPopupWindow(this, onClickListener);
+
+        goodPopupWindow.setListening(new GoodPopupWindow.PopwindowClickListening() {
+            @Override
+            public void addCar(String id) {
+                addCart(id);
+            }
+
+            @Override
+            public void goodDetail(String id) {
+                Bundle Bundle_about = new Bundle();
+                Bundle_about.putInt("type", 19);
+                Bundle_about.putString("good_detail_id", id );
+                PlatformForFragmentActivity.newInstance(LivePalyActivity.this, Bundle_about);
+            }
+        });
 
 
         Glide.with(LivePalyActivity.this).load(heade).into(image_header_company);
@@ -607,6 +618,43 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
             }
         }
     };
+
+
+
+    private void addCart(String id) {
+        String getToken = CacheHelper.getAlias(this, "getToken");
+        Map<String, String> map = new HashMap<>();
+        map.put("wxapp_id", "10001");
+        map.put("goods_id", id);
+        map.put("token", getToken);
+        RetrofitClient.getApiService(API.APP_QING_GONG)
+                .addCar(map)
+                .compose(RequestManager.<DeleteCarBean>applyIoSchedulers())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                    }
+                })
+                .doFinally(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                    }
+                })
+                .subscribe(new Consumer<DeleteCarBean>() {
+                               @Override
+                               public void accept(DeleteCarBean deleteCarBean) throws Exception {
+                                   if (deleteCarBean.getCode()==1){
+                                       ToastUtilMsg.showToast(LivePalyActivity.this,"Done");
+                                   }
+                               }
+                           }, new Consumer<Throwable>() {
+                               @Override
+                               public void accept(Throwable throwable) throws Exception {
+
+                               }
+                           }
+                );
+    }
 
 
 

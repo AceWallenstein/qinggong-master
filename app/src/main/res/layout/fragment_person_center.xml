@@ -301,7 +301,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
-                    android:drawableLeft="@mipmap/my_integral_center"
+                    android:drawableLeft="@mipmap/icon_browse_records"
                     android:drawablePadding="@dimen/padding_18dp"
                     android:gravity="center"
                     android:text="Browse Records"
