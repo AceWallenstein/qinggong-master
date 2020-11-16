@@ -16,8 +16,10 @@ import android.widget.TextView;
 import com.national.qinggong.R;
 import com.national.qinggong.bean.BaseConsultBean;
 import com.national.qinggong.bean.ChatConsultBean;
+import com.national.qinggong.ui.activity.PersonalDataActivity;
 import com.national.qinggong.ui.activity.PhotoViewActivity;
 import com.national.qinggong.util.GlideUtils;
+import com.national.qinggong.util.ToastUtilMsg;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,6 +109,12 @@ public class ConsultAdapter extends HFAdapter {
             @Override
             public void onClick(View v) {
                 PhotoViewActivity.open(messageSendViewHolder.image_lift.getContext(),aiRobotItemMessage.getContent());
+            }
+        });
+        messageSendViewHolder.img_robort_avart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PersonalDataActivity.open(messageSendViewHolder.img_robort_avart.getContext(),user_id);
             }
         });
 

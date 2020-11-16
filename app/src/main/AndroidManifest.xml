@@ -56,6 +56,10 @@
         </activity>
         <activity android:name=".ui.activity.MessageActivity" />
         <activity android:name=".ui.activity.WebviewActivity" />
+        <activity android:name=".ui.activity.MyFansActivity" />
+        <activity android:name=".ui.activity.VisitsActivity" />
+        <activity android:name=".ui.activity.BrowseRecordsActivity" />
+        <activity android:name=".ui.activity.PersonalDataActivity" />
         <activity
             android:name=".ui.activity.PlatformForFragmentActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

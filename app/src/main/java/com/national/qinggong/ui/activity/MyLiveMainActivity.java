@@ -49,6 +49,11 @@ public class MyLiveMainActivity extends AppCompatActivity {
     LinearLayout lin_live_video;
     @BindView(R.id.lin_live_bro)
     LinearLayout lin_live_bro;
+    @BindView(R.id.ll_my_fans)
+    LinearLayout ll_my_fans;
+    @BindView(R.id.ll_visits)
+    LinearLayout ll_visits;
+    private String anchor_id="";
 
     public static void open(Context context) {
         Intent intent = new Intent(context, MyLiveMainActivity.class);
@@ -92,6 +97,18 @@ public class MyLiveMainActivity extends AppCompatActivity {
                 MyBroadcastActivity.open(MyLiveMainActivity.this);
             }
         });
+        ll_my_fans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyFansActivity.open(MyLiveMainActivity.this,anchor_id);
+            }
+        });
+        ll_visits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VisitsActivity.open(MyLiveMainActivity.this,anchor_id);
+            }
+        });
     }
 
     private void getLiveListBack() {
@@ -123,6 +140,7 @@ public class MyLiveMainActivity extends AppCompatActivity {
                                        tvTimes.setText(userInfo.getData().getAnchor().getTime() + "");
                                        tvVisits.setText(userInfo.getData().getAnchor().getVisits() + "");
                                        tvFans.setText(userInfo.getData().getAnchor().getFans() + "");
+                                       anchor_id = userInfo.getData().getAnchor().getId()+"";
                                    }
                                }
                            }, new Consumer<Throwable>() {

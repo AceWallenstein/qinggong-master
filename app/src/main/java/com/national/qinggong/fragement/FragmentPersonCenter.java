@@ -18,6 +18,7 @@ import com.national.qinggong.bean.RefreshUrl;
 import com.national.qinggong.contract.PersonCenterContract;
 import com.national.qinggong.presenter.PersonCenterPresenter;
 import com.national.qinggong.ui.activity.AppLoginActivity;
+import com.national.qinggong.ui.activity.BrowseRecordsActivity;
 import com.national.qinggong.ui.activity.ChangePassword;
 import com.national.qinggong.ui.activity.LivePlayListActivity;
 import com.national.qinggong.ui.activity.MyLiveMainActivity;
@@ -47,6 +48,8 @@ public class FragmentPersonCenter extends BaseFragment implements PersonCenterCo
     TextView userEmail;
     @BindView(R.id.alert_live_main)
     RelativeLayout alert_live_main;
+    @BindView(R.id.rl_browse_records)
+    RelativeLayout rl_browse_records;
     @BindView(R.id.rl_back)
     LinearLayout rlBack;
     @BindView(R.id.jifen_point_tv)
@@ -117,7 +120,6 @@ public class FragmentPersonCenter extends BaseFragment implements PersonCenterCo
                         }
                         jifenPointTv.setText(getUserInfo.getPoints() + "");
                         CacheHelper.setAlias(_mActivity, "integral_points", getUserInfo.getPoints() + "");
-
                     }
                 }
             }
@@ -151,7 +153,7 @@ public class FragmentPersonCenter extends BaseFragment implements PersonCenterCo
         unbinder.unbind();
     }
 
-    @OnClick({R.id.rl_back, R.id.user_ecit, R.id.integral_center_rel, R.id.mymessage_rel, R.id.my_collect, R.id.alert_pass, R.id.alert_user_info, R.id.jifen_mingxi, R.id.alert_live_main})
+    @OnClick({R.id.rl_back, R.id.user_ecit, R.id.integral_center_rel, R.id.mymessage_rel, R.id.my_collect, R.id.alert_pass, R.id.alert_user_info, R.id.jifen_mingxi, R.id.alert_live_main,R.id.rl_browse_records})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.jifen_mingxi:
@@ -191,6 +193,10 @@ public class FragmentPersonCenter extends BaseFragment implements PersonCenterCo
                 Bundle classBundle = new Bundle();
                 classBundle.putInt("type", 20);
                 PlatformForFragmentActivity.newInstance(_mActivity, classBundle);
+                break;
+            case R.id.rl_browse_records:
+                BrowseRecordsActivity.open(_mActivity);
+
                 break;
         }
     }

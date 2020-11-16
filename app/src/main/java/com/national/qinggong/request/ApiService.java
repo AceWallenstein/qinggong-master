@@ -8,6 +8,7 @@ import com.national.qinggong.bean.ActivityDetailBean;
 import com.national.qinggong.bean.ArticleDetailBean;
 import com.national.qinggong.bean.BaseBean;
 import com.national.qinggong.bean.BaseStrBean;
+import com.national.qinggong.bean.BrowseRecordsBean;
 import com.national.qinggong.bean.CarBean;
 import com.national.qinggong.bean.ChangePasswordBean;
 import com.national.qinggong.bean.ClassRoomDetailBean;
@@ -27,7 +28,6 @@ import com.national.qinggong.bean.IntegralDetailBean;
 import com.national.qinggong.bean.IntegralMingXiBean;
 import com.national.qinggong.bean.IntegralShopBean;
 import com.national.qinggong.bean.LiveAnchorDetailBean;
-import com.national.qinggong.bean.LiveGetVideobyAnchorBean;
 import com.national.qinggong.bean.LiveListBackBean;
 import com.national.qinggong.bean.LiveListBackBean2;
 import com.national.qinggong.bean.LivePeopleBean;
@@ -39,9 +39,11 @@ import com.national.qinggong.bean.LiveRoomMyTopicBean;
 import com.national.qinggong.bean.LiveRoomTopicListBean;
 import com.national.qinggong.bean.LiveVideoListBean;
 import com.national.qinggong.bean.MultiMarketBean;
+import com.national.qinggong.bean.MyFansBean;
 import com.national.qinggong.bean.MyMessageBean;
 import com.national.qinggong.bean.NewsDetailBean;
 import com.national.qinggong.bean.PersonCenterBean;
+import com.national.qinggong.bean.PersonalDataBean;
 import com.national.qinggong.bean.ReadUserInfoBean;
 import com.national.qinggong.bean.SaleCollectBean;
 import com.national.qinggong.bean.SaleManBean;
@@ -55,12 +57,11 @@ import com.national.qinggong.bean.StockBlockBean;
 import com.national.qinggong.bean.SysArticleBean;
 import com.national.qinggong.bean.TaskBean;
 import com.national.qinggong.bean.UploadImageBean;
-import com.national.qinggong.bean.UserOrderListsBean;
+import com.national.qinggong.bean.VisitsBean;
 import com.national.qinggong.bean.ZhiDingPriceBean;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -458,6 +459,26 @@ http://qingong.meiliancheng.cn/index.php?s=/api/article/detail
     @FormUrlEncoded
     @POST("index.php?s=/api/live.live_room/myTopic")
     Observable<LiveRoomMyTopicBean> live_roomMyTopic(@FieldMap Map<String, String> queryMap);
+
+    //主播的观看记录
+    @FormUrlEncoded
+    @POST("index.php?s=/api/live.anchor/fansList")
+    Observable<VisitsBean> getVisits(@FieldMap Map<String, String> queryMap);
+
+    //根据用户id获取用户信息
+    @FormUrlEncoded
+    @POST("index.php?s=/api/user/userInfo")
+    Observable<PersonalDataBean> getPersonalData(@FieldMap Map<String, String> queryMap);
+
+    //粉丝列表
+    @FormUrlEncoded
+    @POST("index.php?s=/api/live.Live_room/viewLog")
+    Observable<MyFansBean> getFans(@FieldMap Map<String, String> queryMap);
+
+    //我的足迹
+    @FormUrlEncoded
+    @POST("index.php?s=/api/user/viewLog")
+    Observable<BrowseRecordsBean> getBrowseRecords(@FieldMap Map<String, String> queryMap);
 
 
     @FormUrlEncoded

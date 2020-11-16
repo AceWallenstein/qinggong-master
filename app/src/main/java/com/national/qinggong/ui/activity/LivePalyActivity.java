@@ -7,11 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.anbetter.danmuku.DanMuView;
@@ -23,6 +27,7 @@ import com.national.qinggong.base.BaseActivity;
 import com.national.qinggong.bean.LivePeopleBean;
 import com.national.qinggong.bean.LiveRoomDetailBean;
 import com.national.qinggong.bean.LiveRoomGetTalkBean;
+import com.national.qinggong.dialog.GoodPopupWindow;
 import com.national.qinggong.dialog.OnDialogClickListener;
 import com.national.qinggong.dialog.dialog.TCInputTextMsgDialog;
 import com.national.qinggong.dialog.dialog.custom.AddUserAddressDialog;
@@ -83,6 +88,10 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
     SpinKitView im_loading;
     @BindView(R.id.tv_follow_play)
     TextView tv_follow_play;
+    @BindView(R.id.iv_good)
+    ImageView iv_good;
+    @BindView(R.id.rl_content)
+    RelativeLayout rl_content;
     private LivePlayDialog livePlayDialog;
     private String anchor_id="";
 
@@ -94,6 +103,11 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
     String pushUrl = "";
     String live_id;
     boolean Is_fans=false;
+
+    private GoodPopupWindow goodPopupWindow = null;
+
+
+
     public static void open(Context context, String live_id,String pushUrl,String avatarUrl,String Fans,String Like_num ,String NickName,String Anchor_id) {
         Intent intent = new Intent(context, LivePalyActivity.class);
         intent.putExtra("result", live_id);
@@ -111,6 +125,10 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
         live_id = getIntent().getStringExtra("result");
         pushUrl = getIntent().getStringExtra("pushUrl");
         heade=getIntent().getStringExtra("avatarUrl");
+
+        goodPopupWindow = new GoodPopupWindow(this, onClickListener);
+
+
         Glide.with(LivePalyActivity.this).load(heade).into(image_header_company);
         companyName.setText(getIntent().getStringExtra("NickName"));
         companyFans.setText(getIntent().getStringExtra("Fans")+ " fans");
@@ -120,6 +138,12 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
             @Override
             public void onClick(View v) {
                 LiveAnchorDetailActivity.open(LivePalyActivity.this,anchor_id);
+            }
+        });
+        iv_good.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopFormBottom(v);
             }
         });
 //创建 player 对象
@@ -347,6 +371,10 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
                                            LiveAnchorDetailActivity.open(LivePalyActivity.this,userInfo.getData().getDetail().getAnchor_id()+"");
                                        }
                                    });
+
+
+                                   goodPopupWindow.setData(userInfo.getData().getDetail().getGoods());
+
                                }
                            }, new Consumer<Throwable>() {
                                @Override
@@ -448,6 +476,7 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
         map.put("wxapp_id", "10001");
         map.put("type", type);
         map.put("live_id", live_id);
+        map.put("token", getToken);
         RetrofitClient.getApiService(API.APP_QING_GONG)
                 .userEnterOrOut(map)
                 .compose(RequestManager.<Object>applyIoSchedulers())
@@ -558,6 +587,31 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
     }
 
 
+
+    public void showPopFormBottom(View view) {
+        //showAtLocation(View parent, int gravity, int x, int y)
+        goodPopupWindow.showAtLocation(findViewById(R.id.rl_content), Gravity.CENTER, 0, 0);
+    }
+
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()) {
+                /*case R.id.btn_take_photo:
+                    System.out.println("btn_take_photo");
+                    break;
+                case R.id.btn_pick_photo:
+                    System.out.println("btn_pick_photo");
+                    break;*/
+            }
+        }
+    };
+
+
+
+
+
     @Override
     protected void onDestroy() {
         userEnterOrOut("out");
@@ -570,4 +624,8 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
         }
         super.onDestroy();
     }
+
+
+
+
 }
