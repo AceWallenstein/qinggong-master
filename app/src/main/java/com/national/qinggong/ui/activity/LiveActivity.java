@@ -535,9 +535,43 @@ public class LiveActivity extends BaseActivity implements ITXLivePushListener {
 
     }
 
+
+    private void setStatus() {
+        Map<String, String> map = new HashMap<>();
+        map.put("wxapp_id", "10001");
+        map.put("status", "30");
+        map.put("id", live_id);
+        RetrofitClient.getApiService(API.APP_QING_GONG)
+                .setStatus(map)
+                .compose(RequestManager.<Object>applyIoSchedulers())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                    }
+                })
+                .doFinally(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                    }
+                })
+                .subscribe(new Consumer<Object>() {
+                               @Override
+                               public void accept(Object o) throws Exception {
+
+                               }
+                           }, new Consumer<Throwable>() {
+                               @Override
+                               public void accept(Throwable throwable) throws Exception {
+
+                               }
+                           }
+                );
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        setStatus();
         mLivePusher.stopPusher();
         if(subscribe!=null){
             subscribe.dispose();

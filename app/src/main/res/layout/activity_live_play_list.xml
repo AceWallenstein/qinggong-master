@@ -11,7 +11,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/padding_150dp">
+        android:layout_height="@dimen/padding_150dp"
+        android:visibility="gone">
 
         <com.zhengsr.viewpagerlib.view.BannerViewPager
             android:id="@+id/loop_viewpager_mz"
@@ -23,6 +24,12 @@
             app:banner_switchtime="600"
             app:banner_transformer="mz" />
     </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"/>
 
 
     <LinearLayout

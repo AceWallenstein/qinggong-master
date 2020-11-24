@@ -658,8 +658,6 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
 
 
 
-
-
     @Override
     protected void onDestroy() {
         userEnterOrOut("out");

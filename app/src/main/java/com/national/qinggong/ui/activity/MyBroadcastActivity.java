@@ -74,10 +74,18 @@ public class MyBroadcastActivity extends BaseActivity {
                 finish();
             }
         });
-        loadDataAnn();
+        //loadDataAnn();
 
         initRefresh();
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadDataAnn();
+    }
+
     private void initRefresh() {
         mProgressLayout = new ProgressLayout(this);
         twinkling_refreshlayout.setHeaderView(mProgressLayout);
@@ -239,14 +247,22 @@ public class MyBroadcastActivity extends BaseActivity {
                 //helper.setText(R.id.tv_sku, model.getUpdate_time());
 
                 helper.setVisibility(R.id.image_del, View.VISIBLE);
-                if(model.getIs_check()==1){
-                    helper.setText(R.id.tv_btn, "Start");
 
-                    helper.setBackgroundRes(R.id.tv_btn,R.drawable.bg_home_live_red_5);
-                }else{
-                    helper.setText(R.id.tv_btn, "Under review");
+                if (model.getStatus().getValue()==10){
+                    if(model.getIs_check()==1){
+                        helper.setText(R.id.tv_btn, "Start");
+
+                        helper.setBackgroundRes(R.id.tv_btn,R.drawable.bg_home_live_red_5);
+                    }else{
+                        helper.setText(R.id.tv_btn, "Under review");
+                        helper.setBackgroundRes(R.id.tv_btn,R.drawable.bg_home_live_black_5);
+                    }
+                }else if(model.getStatus().getValue()==30){
+                    helper.setText(R.id.tv_btn, "End");
                     helper.setBackgroundRes(R.id.tv_btn,R.drawable.bg_home_live_black_5);
                 }
+
+
                 helper.setItemChildClickListener(R.id.image_del);
                 Glide.with(MyBroadcastActivity.this).load(model.getFile_path()).into(helper.getImageView(R.id.image));
 
@@ -277,7 +293,7 @@ public class MyBroadcastActivity extends BaseActivity {
                    public void accept(Boolean aBoolean) throws Exception {
 
                        LiveRoomTopicListBean.DataBean.ListBean listBean = (LiveRoomTopicListBean.DataBean.ListBean) mJobDataAdapter.getData().get(position);
-                       if(listBean.getIs_check()==1){
+                       if(listBean.getStatus().getValue()==10&&listBean.getIs_check()==1){
                            LiveActivity.open(MyBroadcastActivity.this,listBean.getId()+"",listBean.getAnchor().getUser().getAvatarUrl(),"0",listBean.getLike_num()+"",listBean.getAnchor().getUser().getNickName());
                        }else{
                            ToastUtilMsg.showToast(MyBroadcastActivity.this,"Under review");

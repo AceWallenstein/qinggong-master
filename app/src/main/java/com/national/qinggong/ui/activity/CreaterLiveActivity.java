@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,12 +28,14 @@ import com.national.qinggong.request.RetrofitClient;
 import com.national.qinggong.util.CacheHelper;
 import com.national.qinggong.util.DensityUtil;
 import com.national.qinggong.util.MyGlideImageLoader;
+import com.national.qinggong.util.ToastUtilMsg;
 import com.yxd.imagepickers.ImagePicker;
 import com.yxd.imagepickers.bean.ImageItem;
 import com.yxd.imagepickers.ui.ImageGridActivity;
 import com.yxd.imagepickers.view.CropImageView;
 
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -113,7 +116,8 @@ public class CreaterLiveActivity extends BaseActivity {
         });
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
+        //int month = calendar.get(Calendar.MONTH) + 1;
+        int month = calendar.get(Calendar.MONTH) ;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         final Calendar startDate = Calendar.getInstance();
         final Calendar endDate = Calendar.getInstance();
@@ -173,7 +177,37 @@ public class CreaterLiveActivity extends BaseActivity {
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getLiveListAdd();
+
+
+                if (TextUtils.isEmpty(startTime)){
+                    ToastUtilMsg.showToast(CreaterLiveActivity.this,"Please select a start time");
+                }else if(TextUtils.isEmpty(endTime)){
+                    ToastUtilMsg.showToast(CreaterLiveActivity.this,"Please select the end time");
+                }else{
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    Date sd1= null;
+                    Date sd2= null;
+                    try {
+                        sd1 = df.parse(startTime);
+                        sd2=df.parse(endTime);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    //System.out.println(sd1.before(sd2));
+                    //System.out.println(sd1.after(sd2));
+
+                    if (sd1.before(sd2)){
+                        getLiveListAdd();
+                    }else{
+                        ToastUtilMsg.showToast(CreaterLiveActivity.this,"The end time must not be earlier than the beginning time");
+                    }
+
+                }
+
+
+
             }
         });
     }

@@ -462,7 +462,7 @@ http://qingong.meiliancheng.cn/index.php?s=/api/article/detail
 
     //主播的观看记录
     @FormUrlEncoded
-    @POST("index.php?s=/api/live.anchor/fansList")
+    @POST("index.php?s=/api/live.Live_room/viewLog")
     Observable<VisitsBean> getVisits(@FieldMap Map<String, String> queryMap);
 
     //根据用户id获取用户信息
@@ -471,8 +471,9 @@ http://qingong.meiliancheng.cn/index.php?s=/api/article/detail
     Observable<PersonalDataBean> getPersonalData(@FieldMap Map<String, String> queryMap);
 
     //粉丝列表
+    //index.php?s=/api/live.anchor/fansList
     @FormUrlEncoded
-    @POST("index.php?s=/api/live.Live_room/viewLog")
+    @POST("index.php?s=/api/live.anchor/fansList")
     Observable<MyFansBean> getFans(@FieldMap Map<String, String> queryMap);
 
     //我的足迹
@@ -557,6 +558,11 @@ http://qingong.meiliancheng.cn/index.php?s=/api/article/detail
     @FormUrlEncoded
     @POST("index.php?s=/api/live.live_room/userEnter")
     Observable<Object> userEnterOrOut(@FieldMap Map<String, Object> queryMap);
+
+    //设置直播间状态
+    @FormUrlEncoded
+    @POST("index.php?s=/api/live.Live_room/setStatus")
+    Observable<Object> setStatus(@FieldMap Map<String, String> queryMap);
 
 
 }

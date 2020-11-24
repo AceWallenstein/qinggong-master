@@ -78,6 +78,8 @@ public class LivePlayListActivity extends AppCompatActivity {
     TextView tv3;
     @BindView(R.id.v3)
     View v3;
+    @BindView(R.id.iv_top)
+    ImageView iv_top;
     @BindView(R.id.twinkling_refreshlayout)
     TwinklingRefreshLayout twinkling_refreshlayout;
     @BindView(R.id.emptyLayout)
@@ -234,6 +236,8 @@ public class LivePlayListActivity extends AppCompatActivity {
                                @Override
                                public void accept(IndexGetBannerBean userInfo) throws Exception {
                                    if (userInfo.getCode() == 1) {
+
+                                       Glide.with(LivePlayListActivity.this).load(userInfo.getData().getBanner().get(0).getImage().getFile_path()).into((ImageView) iv_top);
                                        showBanner(loop_viewpager_mz, userInfo.getData().getBanner());
                                    } else {
                                        ToastUtilMsg.showToast(LivePlayListActivity.this, userInfo.getMsg());

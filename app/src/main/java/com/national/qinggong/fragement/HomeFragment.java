@@ -13,8 +13,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -22,8 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
@@ -35,7 +31,6 @@ import com.national.qinggong.bean.ActivityArticleBean;
 import com.national.qinggong.bean.ClassTypeBean;
 import com.national.qinggong.bean.DeleteCarBean;
 import com.national.qinggong.bean.HomeBannerBean;
-import com.national.qinggong.bean.HomeBean;
 import com.national.qinggong.bean.HomePageBean;
 import com.national.qinggong.bean.LoopBean;
 import com.national.qinggong.bean.MultiMarketBean;
@@ -43,16 +38,16 @@ import com.national.qinggong.bean.PersonCenterBean;
 import com.national.qinggong.bean.RefreshUrl;
 import com.national.qinggong.contract.HomePageContract;
 import com.national.qinggong.customview.CornerTransform;
-import com.national.qinggong.customview.GridSpacingItemDecoration;
 import com.national.qinggong.customview.HorizontalItemDecoration;
-import com.national.qinggong.customview.SmallTopBannerAdapter;
 import com.national.qinggong.presenter.HomePagePresenter;
 import com.national.qinggong.request.API;
-import com.national.qinggong.request.ExceptionHandler;
 import com.national.qinggong.request.RequestManager;
 import com.national.qinggong.request.RetrofitClient;
+import com.national.qinggong.ui.activity.LiveAnchorDetailActivity;
+import com.national.qinggong.ui.activity.LivePalyActivity;
 import com.national.qinggong.ui.activity.LivePlayListActivity;
 import com.national.qinggong.ui.activity.PlatformForFragmentActivity;
+import com.national.qinggong.ui.activity.PlayVideoActivity;
 import com.national.qinggong.ui.activity.WebviewActivity;
 import com.national.qinggong.util.CacheHelper;
 import com.national.qinggong.util.Constant;
@@ -509,7 +504,11 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
         newArrival_DataAdapter.setOnRVItemClickListener(new BGAOnRVItemClickListener() {
             @Override
             public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-                LivePlayListActivity.open(_mActivity);
+                //LivePlayListActivity.open(_mActivity);
+                HomePageBean.DataBean.LiveBean currentbean = (HomePageBean.DataBean.LiveBean) newArrival_DataAdapter.getItem(position);
+                LivePalyActivity.open(getActivity(), currentbean.getId() + "", currentbean.getLive_url()
+                        , "", "0", currentbean.getLike_num() + "",
+                        "",currentbean.getAnchor_id() + "");
             }
         });
 
@@ -536,7 +535,9 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
         newArrival_DataAdapter.setOnRVItemClickListener(new BGAOnRVItemClickListener() {
             @Override
             public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-                LivePlayListActivity.open(_mActivity);
+                //LivePlayListActivity.open(_mActivity);
+                HomePageBean.DataBean.AppOBean currentbean = (HomePageBean.DataBean.AppOBean) newArrival_DataAdapter.getItem(position);
+                LiveAnchorDetailActivity.open(getActivity(), currentbean.getAnchor_id() + "");
             }
         });
 
@@ -561,8 +562,9 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
         newArrival_DataAdapter.setOnRVItemClickListener(new BGAOnRVItemClickListener() {
             @Override
             public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-                LivePlayListActivity.open(_mActivity);
-
+                //LivePlayListActivity.open(_mActivity);
+                HomePageBean.DataBean.PlayBackBean currentbean = (HomePageBean.DataBean.PlayBackBean) newArrival_DataAdapter.getItem(position);
+                PlayVideoActivity.open(getActivity(), currentbean.getVideo_url());
             }
         });
 

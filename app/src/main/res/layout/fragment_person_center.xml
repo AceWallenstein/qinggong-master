@@ -68,7 +68,7 @@
                                     android:id="@+id/user_name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Isaac Hunt"
+                                    android:text=""
                                     android:textColor="#ff333333"
                                     android:textSize="27sp" />
 
@@ -92,7 +92,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/padding_10dp"
-                                android:text="192584@163.com"
+                                android:text=""
                                 android:textColor="#ff9ba8c2"
                                 android:textSize="15sp" />
 

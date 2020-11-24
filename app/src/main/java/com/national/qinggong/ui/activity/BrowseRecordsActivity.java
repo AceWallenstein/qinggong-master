@@ -2,6 +2,7 @@ package com.national.qinggong.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.national.qinggong.base.BaseActivity;
 import com.national.qinggong.bean.BrowseRecordsBean;
 import com.national.qinggong.bean.MyFansBean;
 import com.national.qinggong.customview.EmptyLayout;
+import com.national.qinggong.fragement.FragmentShopDetail;
 import com.national.qinggong.request.API;
 import com.national.qinggong.request.RequestManager;
 import com.national.qinggong.request.RetrofitClient;
@@ -153,8 +155,11 @@ public class BrowseRecordsActivity extends BaseActivity {
         newArrival_DataAdapter.setOnRVItemClickListener(new BGAOnRVItemClickListener() {
             @Override
             public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-                //String anchor_id = newArrival_DataAdapter.getData().get(position).anchor_id+"";
-                //LiveAnchorDetailActivity.open(MyFansActivity.this, anchor_id+ "");
+                String goods_id = newArrival_DataAdapter.getData().get(position).goods_id+"";
+                Bundle Bundle_about = new Bundle();
+                Bundle_about.putInt("type", 19);
+                Bundle_about.putString("good_detail_id", goods_id + "");
+                PlatformForFragmentActivity.newInstance(BrowseRecordsActivity.this, Bundle_about);
             }
         });
     }
