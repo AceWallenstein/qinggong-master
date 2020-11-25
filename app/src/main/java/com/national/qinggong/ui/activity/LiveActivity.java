@@ -31,6 +31,7 @@ import com.national.qinggong.request.API;
 import com.national.qinggong.request.RequestManager;
 import com.national.qinggong.request.RetrofitClient;
 import com.national.qinggong.util.CacheHelper;
+import com.national.qinggong.util.MyUtil;
 import com.national.qinggong.util.ToastUtilMsg;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.tencent.rtmp.ITXLivePushListener;
@@ -171,11 +172,14 @@ public class LiveActivity extends BaseActivity implements ITXLivePushListener {
         image_fin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isStart) {
-                    finish();
-                } else {
-                    Live_roomSetStatus("10");
+                if(!MyUtil.isFastDoubleClick()){
+                    if (!isStart) {
+                        finish();
+                    } else {
+                        Live_roomSetStatus("10");
+                    }
                 }
+
             }
         });
 
