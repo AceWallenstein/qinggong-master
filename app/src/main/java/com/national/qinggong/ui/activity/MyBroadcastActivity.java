@@ -74,7 +74,7 @@ public class MyBroadcastActivity extends BaseActivity {
                 finish();
             }
         });
-        //loadDataAnn();
+        loadDataAnn();
 
         initRefresh();
     }
@@ -83,7 +83,8 @@ public class MyBroadcastActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadDataAnn();
+        mIndex = 1;
+        getLiveList();
     }
 
     private void initRefresh() {

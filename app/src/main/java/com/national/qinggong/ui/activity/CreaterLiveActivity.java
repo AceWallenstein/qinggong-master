@@ -300,6 +300,7 @@ public class CreaterLiveActivity extends BaseActivity {
                 .subscribe(new Consumer<Object>() {
                                @Override
                                public void accept(Object userInfo) throws Exception {
+                                   MyBroadcastActivity.open(CreaterLiveActivity.this);
                                    finish();
                                }
                            }, new Consumer<Throwable>() {

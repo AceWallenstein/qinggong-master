@@ -156,7 +156,8 @@ public class GoodPopupWindow extends PopupWindow {
 
             viewHolder.tv_good_name.setText(list.get(position).getGoods().getGoods_name());
             viewHolder.tv_type.setText(list.get(position).getGoods().getNumber());
-            viewHolder.tv_number.setText(list.get(position).getGoods().getNumber());
+            //viewHolder.tv_number.setText(list.get(position).getGoods().getNumber());
+            viewHolder.tv_number.setText(position+1+"");
             Glide.with(mContext).load(list.get(position).getGoods().getLogo()).into(viewHolder.iv_good);
 
 

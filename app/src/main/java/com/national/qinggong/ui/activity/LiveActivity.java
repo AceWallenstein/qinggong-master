@@ -7,14 +7,15 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.anbetter.danmuku.DanMuView;
 import com.anbetter.danmuku.model.DanMuModel;
 import com.anbetter.danmuku.model.utils.DimensionUtil;
@@ -22,10 +23,10 @@ import com.bumptech.glide.Glide;
 import com.national.qinggong.R;
 import com.national.qinggong.adapter.JoneBaseAdapter;
 import com.national.qinggong.base.BaseActivity;
-import com.national.qinggong.bean.LivePeopleBean;
+import com.national.qinggong.bean.DeleteCarBean;
 import com.national.qinggong.bean.LiveRoomDetailBean;
 import com.national.qinggong.bean.LiveRoomGetTalkBean;
-import com.national.qinggong.bean.LiveRoomTopicListBean;
+import com.national.qinggong.dialog.GoodPopupWindow;
 import com.national.qinggong.dialog.dialog.TCInputTextMsgDialog;
 import com.national.qinggong.request.API;
 import com.national.qinggong.request.RequestManager;
@@ -33,19 +34,15 @@ import com.national.qinggong.request.RetrofitClient;
 import com.national.qinggong.util.CacheHelper;
 import com.national.qinggong.util.MyUtil;
 import com.national.qinggong.util.ToastUtilMsg;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.tencent.rtmp.ITXLivePushListener;
 import com.tencent.rtmp.TXLiveConstants;
 import com.tencent.rtmp.TXLivePushConfig;
 import com.tencent.rtmp.TXLivePusher;
 import com.tencent.rtmp.ui.TXCloudVideoView;
-
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
 import butterknife.BindView;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
@@ -96,6 +93,10 @@ public class LiveActivity extends BaseActivity implements ITXLivePushListener {
     TextView tv_online;
     @BindView(R.id.danmaku_container_broadcast)
     DanMuView mDanMuContainerBroadcast;
+    @BindView(R.id.iv_good)
+    ImageView iv_good;
+    @BindView(R.id.rl_content)
+    RelativeLayout rl_content;
     /**
      * SDK 提供的类
      */
@@ -121,6 +122,7 @@ public class LiveActivity extends BaseActivity implements ITXLivePushListener {
     private boolean isStart = false;
     private boolean isOpen = false;
     Disposable subscribe;
+    private GoodPopupWindow goodPopupWindow = null;
     @Override
     protected void initdata() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -176,7 +178,7 @@ public class LiveActivity extends BaseActivity implements ITXLivePushListener {
                     if (!isStart) {
                         finish();
                     } else {
-                        Live_roomSetStatus("10");
+                        Live_roomSetStatus("30");
                     }
                 }
 
@@ -184,6 +186,88 @@ public class LiveActivity extends BaseActivity implements ITXLivePushListener {
         });
 
 
+        goodPopupWindow = new GoodPopupWindow(this, onClickListener);
+
+        goodPopupWindow.setListening(new GoodPopupWindow.PopwindowClickListening() {
+            @Override
+            public void addCar(String id) {
+                addCart(id);
+            }
+
+            @Override
+            public void goodDetail(String id) {
+                Bundle Bundle_about = new Bundle();
+                Bundle_about.putInt("type", 19);
+                Bundle_about.putString("good_detail_id", id );
+                PlatformForFragmentActivity.newInstance(LiveActivity.this, Bundle_about);
+            }
+        });
+
+
+        iv_good.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopFormBottom(v);
+            }
+        });
+
+
+    }
+
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()) {
+                /*case R.id.btn_take_photo:
+                    System.out.println("btn_take_photo");
+                    break;
+                case R.id.btn_pick_photo:
+                    System.out.println("btn_pick_photo");
+                    break;*/
+            }
+        }
+    };
+
+    public void showPopFormBottom(View view) {
+        //showAtLocation(View parent, int gravity, int x, int y)
+        goodPopupWindow.showAtLocation(findViewById(R.id.rl_content), Gravity.CENTER, 0, 0);
+    }
+
+
+    private void addCart(String id) {
+        String getToken = CacheHelper.getAlias(this, "getToken");
+        Map<String, String> map = new HashMap<>();
+        map.put("wxapp_id", "10001");
+        map.put("goods_id", id);
+        map.put("token", getToken);
+        RetrofitClient.getApiService(API.APP_QING_GONG)
+                .addCar(map)
+                .compose(RequestManager.<DeleteCarBean>applyIoSchedulers())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                    }
+                })
+                .doFinally(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                    }
+                })
+                .subscribe(new Consumer<DeleteCarBean>() {
+                               @Override
+                               public void accept(DeleteCarBean deleteCarBean) throws Exception {
+                                   if (deleteCarBean.getCode()==1){
+                                       ToastUtilMsg.showToast(LiveActivity.this,"Done");
+                                   }
+                               }
+                           }, new Consumer<Throwable>() {
+                               @Override
+                               public void accept(Throwable throwable) throws Exception {
+
+                               }
+                           }
+                );
     }
 
     public void setStart() {
@@ -363,6 +447,7 @@ public class LiveActivity extends BaseActivity implements ITXLivePushListener {
                                        isOpen = true;
                                        startPush(pushUrl);
                                    }
+                                   goodPopupWindow.setData(userInfo.getData().getDetail().getGoods());
                                }
                            }, new Consumer<Throwable>() {
                                @Override
@@ -540,7 +625,7 @@ public class LiveActivity extends BaseActivity implements ITXLivePushListener {
     }
 
 
-    private void setStatus() {
+    /*private void setStatus() {
         Map<String, String> map = new HashMap<>();
         map.put("wxapp_id", "10001");
         map.put("status", "30");
@@ -570,12 +655,26 @@ public class LiveActivity extends BaseActivity implements ITXLivePushListener {
                                }
                            }
                 );
+    }*/
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==KeyEvent.KEYCODE_BACK){
+            if (!isStart) {
+                finish();
+            } else {
+                Live_roomSetStatus("30");
+            }
+            return false;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        setStatus();
+        //setStatus();
         mLivePusher.stopPusher();
         if(subscribe!=null){
             subscribe.dispose();
