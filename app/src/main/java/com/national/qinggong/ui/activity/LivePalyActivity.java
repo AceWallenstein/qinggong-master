@@ -359,7 +359,8 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
                                    follow = userInfo.getData().getDetail().getAnchor().getFans() + "";
                                    browas = userInfo.getData().getDetail().getLike_num() + "";
                                    Glide.with(LivePalyActivity.this).load(userInfo.getData().getDetail().getAnchor().getUser().getAvatarUrl()).into(image_header_company);
-                                   companyName.setText(userInfo.getData().getUser().getNickName());
+                                   companyName.setText(userInfo.getData().getDetail().getAnchor().getUser().getNickName());
+
                                    companyFans.setText(userInfo.getData().getDetail().getAnchor().getFans() + " fans");
 
 
