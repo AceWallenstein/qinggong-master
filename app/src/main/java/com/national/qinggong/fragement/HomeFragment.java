@@ -1,11 +1,10 @@
 package com.national.qinggong.fragement;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,6 +12,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -48,33 +49,28 @@ import com.national.qinggong.ui.activity.LivePalyActivity;
 import com.national.qinggong.ui.activity.LivePlayListActivity;
 import com.national.qinggong.ui.activity.PlatformForFragmentActivity;
 import com.national.qinggong.ui.activity.PlayVideoActivity;
+import com.national.qinggong.ui.activity.TestActivity;
 import com.national.qinggong.ui.activity.WebviewActivity;
 import com.national.qinggong.util.CacheHelper;
 import com.national.qinggong.util.Constant;
-import com.national.qinggong.util.DensityUtil;
 import com.national.qinggong.util.GlideUtils;
-import com.national.qinggong.util.ScreenUtil;
 import com.national.qinggong.util.StringUtils;
-import com.national.qinggong.util.ToastUtilMsg;
-import com.national.qinggong.util.UPMarqueeView;
 import com.zhengsr.viewpagerlib.bean.PageBean;
 import com.zhengsr.viewpagerlib.bean.RectBean;
 import com.zhengsr.viewpagerlib.callback.PageHelperListener;
-import com.zhengsr.viewpagerlib.indicator.CircleIndicator;
 import com.zhengsr.viewpagerlib.indicator.RectIndicator;
-import com.zhengsr.viewpagerlib.indicator.TabIndicator;
 import com.zhengsr.viewpagerlib.type.BannerTransType;
 import com.zhengsr.viewpagerlib.view.BannerViewPager;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
@@ -266,6 +262,8 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
                 //positionOffsetPixels 页面滚动的实际距离
                 Log.i("test","loop_viewpager_shop百分比="+positionOffset+"+++position="+position);
 
+
+
                 //总页数-1
                 //int totalPage=loop_viewpager_shop.getChildCount();
                 //每一页的宽度
@@ -273,9 +271,14 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
                 //viewpage的总宽度
                 int totalWith=pageSize*with;
                 //已经滑动的距离
-                float distance = (with * positionOffset)  + (with * position);
+                //float distance = (with * positionOffset)  + (with * position);
+                int bbb=position%pageSize;
+                Log.i("test","bbb="+bbb);
 
-                Log.i("test","总页数-1 pageSize="+pageSize);
+                float distance = (with * positionOffset)  + (with * (position%pageSize));
+
+                Log.i("test","positionOffsetPixels="+positionOffsetPixels);
+                Log.i("test","总页数 pageSize="+pageSize);
                 Log.i("test","单页宽度with="+with);
                 Log.i("test","viewpage的总宽度totalWith="+totalWith);
                 Log.i("test","已经滑动的距离distance="+distance);
@@ -284,6 +287,7 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
 
                 Log.i("test","进度p="+p);
                 Log.i("test","进度int p="+Math.round(p));
+                Log.i("test","==============================================================");
                 progress_bar2.setProgress(Math.round(p));
             }
 
@@ -292,6 +296,17 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
 
             @Override
             public void onPageScrollStateChanged(int i) { }
+        });
+
+        loop_viewpager_shop.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction()==MotionEvent.ACTION_UP){
+                    loop_viewpager_shop.startAnim();
+                }
+
+                return false;
+            }
         });
     }
 
@@ -339,9 +354,14 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
 
         loop_viewpager_mz.addPageBean(bean)
                 .addIndicator(rect_indicator)
-                .setCurrentPosition(1);
+                .setCurrentPosition(0);
+
+
+
+
         PageBean bean2 = new PageBean();
-        bean2.isAutoLoop = false;
+        //bean2.isAutoLoop = false;
+        bean2.isAutoLoop = true;
         bean2.smoothScrollTime = 400;
         bean2.loopTime = 5000;
         bean2.transFormer = BannerTransType.DEPATH;
@@ -350,6 +370,13 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
 
 
 //        showBanner(loop_viewpager_mz);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        loop_viewpager_mz.startAnim();
+        loop_viewpager_shop.startAnim();
     }
 
     private void showBanner(BannerViewPager bannerViewPager, List<HomePageBean.DataBean.BannerBean> getBanner) {
@@ -376,6 +403,7 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
                 PlatformForFragmentActivity.newInstance(_mActivity, classBundle);
             }
         });
+        loop_viewpager_mz.startAnim();
     }
 
     private void showBannerShop(BannerViewPager bannerViewPager, List<BannerShopBean> getBanner) {
@@ -391,10 +419,11 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
 
             @Override
             public void onItemClick(View view, BannerShopBean data, int position) {
-                super.onItemClick(view, data, position);
-
+                //super.onItemClick(view, data, position);
+                Log.i("test", position + "===========================banner");
             }
         });
+        loop_viewpager_shop.startAnim();
     }
 
     class BannerShopBean {
@@ -449,7 +478,7 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
     public void newArrivData(RecyclerView new_arrive_recyclerView, List<HomePageBean.DataBean.NewGoodsBean> getNew_goods) {
         final JoneBaseAdapter newArrival_DataAdapter = new JoneBaseAdapter<HomePageBean.DataBean.NewGoodsBean>(new_arrive_recyclerView, R.layout.item_hot_products2) {
             @Override
-            public void fillItemData(BGAViewHolderHelper helper, int position, HomePageBean.DataBean.NewGoodsBean model) {
+            public void fillItemData(BGAViewHolderHelper helper, final int position, final HomePageBean.DataBean.NewGoodsBean model) {
 //                helper.setText(R.id.title, model.getMsg() + "");
              /*   helper.setText(R.id.name_product, model.getGoods_name() + "");
                 helper.setText(R.id.number, model.getNumber() + "");*/
@@ -459,15 +488,33 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
 //        Glide.with(context).load(list.get(position).getIcon()).into(holder.ivtype);
                 Glide.with(_mActivity).load(model.getFile_path())
                         .bitmapTransform(transformation).into((ImageView) helper.getView(R.id.product_image));
+
+
+               /* helper.getView(R.id.rrl).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int getGoods_id = model.getGoods_id();
+                        Bundle Bundle_about = new Bundle();
+                        Bundle_about.putInt("type", 19);
+                        Bundle_about.putString("good_detail_id", getGoods_id + "");
+                        PlatformForFragmentActivity.newInstance(_mActivity, Bundle_about);
+                    }
+                });*/
+
             }
+
         };
         //LinearLayoutManager layoutManager = new LinearLayoutManager(_mActivity, LinearLayoutManager.VERTICAL, false);
         new_arrive_recyclerView.setLayoutManager(new GridLayoutManager(_mActivity, 4));
         new_arrive_recyclerView.setAdapter(newArrival_DataAdapter);
 
+
+
+
         newArrival_DataAdapter.setOnRVItemClickListener(new BGAOnRVItemClickListener() {
             @Override
             public void onRVItemClick(ViewGroup parent, View itemView, int position) {
+
                 HomePageBean.DataBean.NewGoodsBean currentbean = (HomePageBean.DataBean.NewGoodsBean) newArrival_DataAdapter.getItem(position);
                 if (currentbean != null) {
                     int getGoods_id = currentbean.getGoods_id();
@@ -707,10 +754,11 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
                 PlatformForFragmentActivity.newInstance(_mActivity, classBundle);
                 break;*/
             case R.id.message_rel://个人红心
-                Bundle messageBundle = new Bundle();
+                /*Bundle messageBundle = new Bundle();
                 messageBundle.putInt("type", 25);
-                PlatformForFragmentActivity.newInstance(_mActivity, messageBundle);
-//                ActivityUtils.startActivity(_mActivity, MessageActivity.class);
+                PlatformForFragmentActivity.newInstance(_mActivity, messageBundle);*/
+
+                TestActivity.open(getActivity());
                 break;
 
          /*   case R.id.activity_image://营销活动
@@ -793,7 +841,9 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
                     Log.i("test","getNew_goods="+getNew_goods.size());
 
                     //向上取整
-                    pageSize = (int)Math.ceil((double)getNew_goods.size()/8)-1;
+                    //pageSize = (int)Math.ceil((double)getNew_goods.size()/8)-1;
+                    //向下取整
+                    pageSize = (int)Math.ceil((double)getNew_goods.size()/8);
 
                     List<BannerShopBean> listBanner = new ArrayList<>();
 
@@ -961,16 +1011,15 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
         home_product_recyclerView.setLayoutManager(layoutManager);
         home_product_recyclerView.setHasFixedSize(true);
         home_product_recyclerView.addItemDecoration(new HorizontalItemDecoration(10, mContext));//10表示10dp
-//        home_product_recyclerView.addItemDecoration(new GridSpacingItemDecoration(3, DensityUtil.dip2px(mContext, 10), true));
+
+        //home_product_recyclerView.addItemDecoration(new GridSpacingItemDecoration(3, DensityUtil.dip2px(mContext, 10), true));
         mJobDataAdapter = new JoneBaseAdapter<HomePageBean.DataBean.HotGoodsBean>(home_product_recyclerView, R.layout.item_hot_products2) {
             @Override
             public void fillItemData(BGAViewHolderHelper helper, int position, HomePageBean.DataBean.HotGoodsBean model) {
 
-                //   GlideUtils.loadImageByUrl(model.getFile_path(), (ImageView) helper.getView(R.id.product_image));
                 CornerTransform transformation = new CornerTransform(_mActivity, 10);
                 //只是绘制左上角和右上角圆角
                 transformation.setExceptCorner(false, false, true, true);
-//        Glide.with(context).load(list.get(position).getIcon()).into(holder.ivtype);
                 Glide.with(_mActivity).load(model.getFile_path())
                         .bitmapTransform(transformation).into((ImageView) helper.getView(R.id.product_image));
             }
@@ -992,9 +1041,12 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
             }
         });
 
-//        mJobDataAdapter.setData(datas);
+        //mJobDataAdapter.setData(datas);
         home_product_recyclerView.setAdapter(mJobDataAdapter);
     }
+
+
+
 
     /*
      * 0:跳到网页 1:跳转到文章 2:跳到课程

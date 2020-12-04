@@ -488,7 +488,12 @@ public class LiveAnchorDetailActivity extends BaseActivity {
         mJobDataAdapter2 = new JoneBaseAdapter<LiveListBackBean2.DataBeanX.DataBean>(recyclerView, R.layout.item_live_list_play_back) {
            @Override
            public void fillItemData(BGAViewHolderHelper helper, int position, LiveListBackBean2.DataBeanX.DataBean model) {
-               helper.setText(R.id.tv_time, model.getStart_time().getText() );
+               //helper.setText(R.id.tv_time, model.getCreate_time());
+
+               String times1[]=model.getCreate_time().split(" ");
+               String times[]=times1[0].split("-");
+               helper.setText(R.id.tv_time, times[2] + "-"+times[1]+"-"+times[0]+" "+times1[1]);
+
                helper.setText(R.id.tv_content, model.getName() + "");
                // helper.setText(R.id.tv_user_name, model.getAnchor().getUser().getNickName() + "");
                Glide.with(LiveAnchorDetailActivity.this).load(model.getFile_path()).into((ImageView) helper.getView(R.id.image));
