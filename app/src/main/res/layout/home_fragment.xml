@@ -236,11 +236,17 @@
                             android:id="@+id/loop_viewpager_shop"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            app:banner_isAutoLoop="true"
-                            app:banner_iscycle="true"
+                            app:banner_isAutoLoop="false"
+                            app:banner_iscycle="false"
                             app:banner_looptime="4000"
                             app:banner_switchtime="600"
                             app:banner_transformer="card" />
+
+                        <!--<com.youth.banner.Banner
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/banner"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/padding_200dp" />-->
                     </FrameLayout>
 
                 </LinearLayout>

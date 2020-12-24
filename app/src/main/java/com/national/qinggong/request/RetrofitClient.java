@@ -259,6 +259,12 @@ public class RetrofitClient {
                         .build();
             }
             Response originalResponse = chain.proceed(request);
+
+            if (originalResponse.isSuccessful()){
+
+            }
+
+
             if (NetworkUtils.isNetConnected(MyApplication.getInstance())) {
                 //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
                 return originalResponse.newBuilder()

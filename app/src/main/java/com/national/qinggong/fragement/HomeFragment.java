@@ -44,6 +44,7 @@ import com.national.qinggong.presenter.HomePagePresenter;
 import com.national.qinggong.request.API;
 import com.national.qinggong.request.RequestManager;
 import com.national.qinggong.request.RetrofitClient;
+import com.national.qinggong.ui.activity.AppLoginActivity;
 import com.national.qinggong.ui.activity.LiveAnchorDetailActivity;
 import com.national.qinggong.ui.activity.LivePalyActivity;
 import com.national.qinggong.ui.activity.LivePlayListActivity;
@@ -51,6 +52,7 @@ import com.national.qinggong.ui.activity.PlatformForFragmentActivity;
 import com.national.qinggong.ui.activity.PlayVideoActivity;
 import com.national.qinggong.ui.activity.TestActivity;
 import com.national.qinggong.ui.activity.WebviewActivity;
+import com.national.qinggong.util.ActivityUtils;
 import com.national.qinggong.util.CacheHelper;
 import com.national.qinggong.util.Constant;
 import com.national.qinggong.util.GlideUtils;
@@ -137,6 +139,9 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
     ProgressBar progress_bar;
     @BindView(R.id.progress_bar2)
     ProgressBar progress_bar2;
+    /*@BindView(R.id.banner)
+    Banner banner;*/
+
     int flag;
     private List<String> mToplist = new ArrayList<>(); //头部广告链接集合
     List<HomeBannerBean.DataBean.SwipersBean> getSwipers;
@@ -168,6 +173,8 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
     private List<HomePageBean.DataBean.PlayBackBean> playback;
     //new arrivals 的viewpage的总页数-1
     private int pageSize;
+    private List<HomePageBean.DataBean.NewGoodsBean> getNew_goods;
+    private List<BannerShopBean> listBanner;
 
     public static HomeFragment newInstance() {
         Bundle args = new Bundle();
@@ -272,10 +279,11 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
                 int totalWith=pageSize*with;
                 //已经滑动的距离
                 //float distance = (with * positionOffset)  + (with * position);
-                int bbb=position%pageSize;
-                Log.i("test","bbb="+bbb);
+                //int bbb=position%pageSize;
+                //Log.i("test","bbb="+bbb);
 
-                float distance = (with * positionOffset)  + (with * (position%pageSize));
+                //float distance = (with * positionOffset)  + (with * (position%pageSize));
+                float distance = (with * positionOffset)  + (with * position);
 
                 Log.i("test","positionOffsetPixels="+positionOffsetPixels);
                 Log.i("test","总页数 pageSize="+pageSize);
@@ -298,7 +306,7 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
             public void onPageScrollStateChanged(int i) { }
         });
 
-        loop_viewpager_shop.setOnTouchListener(new View.OnTouchListener() {
+        /*loop_viewpager_shop.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction()==MotionEvent.ACTION_UP){
@@ -307,7 +315,7 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
 
                 return false;
             }
-        });
+        });*/
     }
 
 
@@ -360,8 +368,7 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
 
 
         PageBean bean2 = new PageBean();
-        //bean2.isAutoLoop = false;
-        bean2.isAutoLoop = true;
+        bean2.isAutoLoop = false;
         bean2.smoothScrollTime = 400;
         bean2.loopTime = 5000;
         bean2.transFormer = BannerTransType.DEPATH;
@@ -376,7 +383,7 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
     public void onStart() {
         super.onStart();
         loop_viewpager_mz.startAnim();
-        loop_viewpager_shop.startAnim();
+        //loop_viewpager_shop.startAnim();
     }
 
     private void showBanner(BannerViewPager bannerViewPager, List<HomePageBean.DataBean.BannerBean> getBanner) {
@@ -406,7 +413,7 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
         loop_viewpager_mz.startAnim();
     }
 
-    private void showBannerShop(BannerViewPager bannerViewPager, List<BannerShopBean> getBanner) {
+    private void showBannerShop(BannerViewPager bannerViewPager,final List<BannerShopBean> getBanner) {
 
         bannerViewPager.setPageListener(R.layout.loop_layout_2, getBanner, new PageHelperListener<BannerShopBean>() {
 
@@ -420,10 +427,12 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
             @Override
             public void onItemClick(View view, BannerShopBean data, int position) {
                 //super.onItemClick(view, data, position);
+                getNew_goods = getBanner.get(position).getNew_goods;
+
                 Log.i("test", position + "===========================banner");
             }
         });
-        loop_viewpager_shop.startAnim();
+        //loop_viewpager_shop.startAnim();
     }
 
     class BannerShopBean {
@@ -475,7 +484,7 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
 
     }
 
-    public void newArrivData(RecyclerView new_arrive_recyclerView, List<HomePageBean.DataBean.NewGoodsBean> getNew_goods) {
+    public void newArrivData(RecyclerView new_arrive_recyclerView, final List<HomePageBean.DataBean.NewGoodsBean> getNew_goods) {
         final JoneBaseAdapter newArrival_DataAdapter = new JoneBaseAdapter<HomePageBean.DataBean.NewGoodsBean>(new_arrive_recyclerView, R.layout.item_hot_products2) {
             @Override
             public void fillItemData(BGAViewHolderHelper helper, final int position, final HomePageBean.DataBean.NewGoodsBean model) {
@@ -515,14 +524,22 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
             @Override
             public void onRVItemClick(ViewGroup parent, View itemView, int position) {
 
-                HomePageBean.DataBean.NewGoodsBean currentbean = (HomePageBean.DataBean.NewGoodsBean) newArrival_DataAdapter.getItem(position);
-                if (currentbean != null) {
-                    int getGoods_id = currentbean.getGoods_id();
-                    Bundle Bundle_about = new Bundle();
-                    Bundle_about.putInt("type", 19);
-                    Bundle_about.putString("good_detail_id", getGoods_id + "");
-                    PlatformForFragmentActivity.newInstance(_mActivity, Bundle_about);
+                //HomePageBean.DataBean.NewGoodsBean currentbean = (HomePageBean.DataBean.NewGoodsBean) newArrival_DataAdapter.getItem(position);
+                if (getNew_goods!=null&&getNew_goods.size()>0){
+                    HomePageBean.DataBean.NewGoodsBean currentbean = getNew_goods.get(position);
+
+                    if (currentbean != null) {
+                        int getGoods_id = currentbean.getGoods_id();
+                        Bundle Bundle_about = new Bundle();
+                        Bundle_about.putInt("type", 19);
+                        Bundle_about.putString("good_detail_id", getGoods_id + "");
+                        PlatformForFragmentActivity.newInstance(_mActivity, Bundle_about);
+                    }
+
+
                 }
+
+
 
             }
         });
@@ -643,8 +660,10 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
                 .subscribe(new Consumer<PersonCenterBean>() {
                                @Override
                                public void accept(PersonCenterBean userInfo) throws Exception {
+                                   if(userInfo.getCode()!=1){
+                                      ActivityUtils.startActivity(getContext(), AppLoginActivity.class);       //token过期跳转。
+                                   }
                                    PersonCenterBean.DataBean.UserInfoBean getUserInfo = userInfo.getData().getUserInfo();
-
                                    if (!StringUtils.isEmpty(getUserInfo.getAvatarUrl())) {
                                        Glide.with(_mActivity).load(getUserInfo.getAvatarUrl()).into((ImageView) message_view);
                                    }
@@ -754,11 +773,11 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
                 PlatformForFragmentActivity.newInstance(_mActivity, classBundle);
                 break;*/
             case R.id.message_rel://个人红心
-                /*Bundle messageBundle = new Bundle();
+                Bundle messageBundle = new Bundle();
                 messageBundle.putInt("type", 25);
-                PlatformForFragmentActivity.newInstance(_mActivity, messageBundle);*/
+                PlatformForFragmentActivity.newInstance(_mActivity, messageBundle);
 
-                TestActivity.open(getActivity());
+                //TestActivity.open(getActivity());
                 break;
 
          /*   case R.id.activity_image://营销活动
@@ -841,11 +860,12 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
                     Log.i("test","getNew_goods="+getNew_goods.size());
 
                     //向上取整
-                    //pageSize = (int)Math.ceil((double)getNew_goods.size()/8)-1;
+                    pageSize = (int)Math.ceil((double)getNew_goods.size()/8)-1;
                     //向下取整
-                    pageSize = (int)Math.ceil((double)getNew_goods.size()/8);
+                    //pageSize = (int)Math.ceil((double)getNew_goods.size()/8);
 
-                    List<BannerShopBean> listBanner = new ArrayList<>();
+                    listBanner = new ArrayList<>();
+                    listBanner.clear();
 
                     for (int i = 0; i < getNew_goods.size(); i++) {
                         int position = i / 8;
@@ -1156,5 +1176,41 @@ public class HomeFragment extends BaseFragment implements HomePageContract.View 
         map.put("token", getToken);
         getPresenter().submit_addcar(map);
     }
+
+
+
+    /*private class NewArrivalsAdapter extends BannerAdapter{
+
+        public NewArrivalsAdapter(List<BannerShopBean> datas) {
+            super(datas);
+        }
+
+        @Override
+        public Object onCreateHolder(ViewGroup parent, int viewType) {
+            RecyclerView recyclerView = new RecyclerView(parent.getContext());
+            //注意，必须设置为match_parent，这个是viewpager2强制要求的
+            recyclerView.setLayoutParams(new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT));
+            return new NewArrivalsAdapter.BannerViewHolder(recyclerView);
+
+        }
+
+        @Override
+        public void onBindView(Object holder, Object data, int position, int size) {
+            //holder.imageView.setImageResource(data.imageRes);
+        }
+
+        class BannerViewHolder extends RecyclerView.ViewHolder {
+            RecyclerView recyclerView;
+
+            public BannerViewHolder(@NonNull RecyclerView view) {
+                super(view);
+                this.recyclerView = view;
+            }
+        }
+    }*/
+
+
 
 }

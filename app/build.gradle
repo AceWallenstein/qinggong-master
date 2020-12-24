@@ -92,4 +92,8 @@ dependencies {
 
     // 加载动画
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+    // banner容器
+   // implementation 'com.youth.banner:banner:2.1.0'
+    //https://github.com/felipecsl/GifImageView
+    implementation 'com.felipecsl:gifimageview:2.2.0'
 }

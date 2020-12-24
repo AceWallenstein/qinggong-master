@@ -477,7 +477,7 @@ public class LiveActivity extends BaseActivity implements ITXLivePushListener {
 
         mJobDataAdapter.setData(list);
         live_message_recycler.setAdapter(mJobDataAdapter);
-        live_message_recycler.scrollToPosition(mJobDataAdapter.getData().size() - 1);
+        //live_message_recycler.scrollToPosition(mJobDataAdapter.getData().size() - 1);
     }
 
     public void danMu(String name) {

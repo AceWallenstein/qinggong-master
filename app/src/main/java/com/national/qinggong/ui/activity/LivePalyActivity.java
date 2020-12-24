@@ -310,7 +310,7 @@ public class LivePalyActivity extends BaseActivity implements ITXLivePlayListene
 
         mJobDataAdapter.setData(list);
         live_message_recycler.setAdapter(mJobDataAdapter);
-        live_message_recycler.scrollToPosition(mJobDataAdapter.getData().size() - 1);
+        //live_message_recycler.scrollToPosition(mJobDataAdapter.getData().size() - 1);
     }
     Disposable subscribe;
     public void getMessage() {

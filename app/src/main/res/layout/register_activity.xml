@@ -41,7 +41,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/padding_39dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padding_20dp"
                 android:orientation="horizontal">
 
@@ -137,6 +137,7 @@
                     android:visibility="visible">
 
                     <EditText
+                        android:inputType="textPassword"
                         android:id="@+id/pass_input"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -158,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_39dp"
-                    android:text="Create Account"
+                    android:text="Confirm Password"
                     android:textColor="#ffb8c7e6"
                     android:textSize="12sp" />
 
@@ -170,6 +171,7 @@
                     android:visibility="visible">
 
                     <EditText
+                        android:inputType="textPassword"
                         android:id="@+id/against_pass"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -194,7 +196,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_39dp"
-                    android:text="Captcha"
+                    android:text="Verification Code"
                     android:textColor="#ffb8c7e6"
                     android:textSize="12sp" />
 
@@ -311,13 +313,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_25dp"
                     android:orientation="horizontal">
+                    <CheckBox
+                        android:layout_gravity="center_vertical"
+                        android:button="@drawable/check_selector"
+                        android:id="@+id/checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                     <TextView
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:id="@+id/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@mipmap/login_jiantou"
-                        android:drawablePadding="@dimen/padding_10dp"
                         android:text=""
                         android:textColor="#ff212121"
                         android:textSize="12sp" />
@@ -329,7 +337,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_25dp"
-                    android:background="@drawable/botton_login_bg">
+                    android:background="@drawable/botton_login_select">
 
                     <TextView
                         android:id="@+id/regist_tv"
@@ -344,6 +352,7 @@
                         android:textSize="18sp" />
 
                     <ImageView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"

@@ -1,15 +1,18 @@
 package com.national.qinggong.ui.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.text.SpannableString;
-import android.text.Spanned;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
 import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,14 +27,12 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.national.qinggong.R;
 import com.national.qinggong.base.BaseActivity;
-import com.national.qinggong.bean.BaseBean;
 import com.national.qinggong.bean.BaseStrBean;
 import com.national.qinggong.bean.CorrentLogin;
 import com.national.qinggong.bean.CountryBean;
-import com.national.qinggong.bean.RegeditSuccessBean;
 import com.national.qinggong.contract.RegeditContract;
 import com.national.qinggong.presenter.RegeditPresenter;
-import com.national.qinggong.util.CacheHelper;
+import com.national.qinggong.util.ActivityUtils;
 import com.national.qinggong.util.CommonUtils;
 import com.national.qinggong.util.StringUtils;
 
@@ -82,6 +83,8 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
     EditText input_country;
 
     int loginFlag;
+    @BindView(R.id.checkbox)
+    CheckBox checkbox;
 
     private boolean runningDownTimer;     //判断是否在倒计时
     private OptionsPickerView<CountryBean.DataBean.ListBean> pvCustomOptions;
@@ -89,10 +92,62 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
 
     @Override
     protected void initdata() {
-        SpannableString sStr = new SpannableString("By creating an account, you agree that you have read and accepted our Conditions of Use and Privacy Notice.");
-        sStr.setSpan(new ForegroundColorSpan(Color.parseColor("#D20B17")), 70, 87, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sStr.setSpan(new ForegroundColorSpan(Color.parseColor("#D20B17")), 92, 107, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        text.setText(sStr);
+//        SpannableString sStr = new SpannableString("By creating an account, you agree that you have read and accepted our Conditions of Use and Privacy Notice.");
+//        sStr.setSpan(new ForegroundColorSpan(Color.parseColor("#D20B17")), 70, 87, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        sStr.setSpan(new ForegroundColorSpan(Color.parseColor("#D20B17")), 92, 107, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        text.setText(sStr);
+        final String linkWord1 = "Conditions of Use";
+        final String linkWord2 = "Privacy Notice";
+        String word = "By creating an account, you agree that you have read and accepted our  " + linkWord1 + " and " + linkWord2;//Conditions of Use and Privacy Notice.
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(word);
+        int index1 = word.indexOf(linkWord1);
+        int index2 = word.indexOf(linkWord2);
+        spannableStringBuilder.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                ActivityUtils.startActivity(RegeditActivity.this, DisclaimerActivity.class);
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(Color.parseColor("#D20B17"));       //设置文件颜色
+//                ds.setUnderlineText(true);      //设置下划线
+            }
+        }, index1, index1 + linkWord1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        spannableStringBuilder.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                ActivityUtils.startActivity(RegeditActivity.this, PrivacyPolicyActivity.class);
+
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(Color.parseColor("#D20B17"));       //设置文件颜色
+//                ds.setUnderlineText(true);      //设置下划线
+            }
+        }, index2, index2 + linkWord2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        text.setTextSize(14);
+        text.setText(spannableStringBuilder);
+        text.setMovementMethod(LinkMovementMethod.getInstance());
+        checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    registTv.setEnabled(true);
+                    relayRegistTv.setEnabled(true);
+                } else {
+                    registTv.setEnabled(false);
+                    relayRegistTv.setEnabled(false);
+                }
+            }
+        });
+        registTv.setEnabled(false);
+        relayRegistTv.setEnabled(false);
+
     }
 
     @Override
@@ -121,7 +176,7 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
 
     };
 
-    @OnClick({R.id.rl_back, R.id.get_yanzhengma, R.id.regist_tv, R.id.user_regist, R.id.saleman_regist, R.id.guanliyuan_tv, R.id.have_login_tv,R.id.country_lin})
+    @OnClick({R.id.rl_back, R.id.get_yanzhengma, R.id.regist_tv, R.id.user_regist, R.id.saleman_regist, R.id.guanliyuan_tv, R.id.have_login_tv, R.id.country_lin})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.country_lin:
@@ -194,8 +249,8 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
                     ToastUtil("Please enter your password again");
                     return;
                 }
-                if (!against_pwd.equals(strpwd)){
-                    ToastUtil("The two passwords are not equal");
+                if (!against_pwd.equals(strpwd)) {
+                    ToastUtil("Please confirm password");
                     return;
                 }
 
@@ -203,13 +258,13 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
 //                    ToastUtil("请输入有效手机号");
 //                    return;
 //                }
-                userRegedit(strphone, strVerificationCode, strpwd,getCountry_id+"");
+                userRegedit(strphone, strVerificationCode, strpwd, getCountry_id + "");
 
                 break;
         }
     }
 
-    private void userRegedit(String phone, String smscode, String password,String country_id) {
+    private void userRegedit(String phone, String smscode, String password, String country_id) {
         Map<String, String> map = new HashMap<>();
         map.put("identity", loginFlag + "");
         map.put("account", phone);
@@ -232,6 +287,7 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
         map.put("wxapp_id", "10001");
         getPresenter().getcountry(map);
     }
+
     @Override
     protected RegeditPresenter getPresenter() {
         return new RegeditPresenter(RegeditActivity.this, RegeditActivity.this);
@@ -271,22 +327,23 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
                 int reason = jsonObject.getInt("code");
                 if (reason == 0) {//统一处理
 //                    Log.i("json=1=",reason);
-                    CorrentLogin newConsulist = new Gson().fromJson(userInfo.toString(), new TypeToken<CorrentLogin>() {
-                    }.getType());
-                    String day = newConsulist.getMsg();
+//                    CorrentLogin newConsulist = new Gson().fromJson(userInfo.toString(), new TypeToken<CorrentLogin>() {
+//                    }.getType());
+//                    String day = newConsulist.getMsg();
+//                    ToastUtil(day);
+                    String day = jsonObject.getString("msg");
                     ToastUtil(day);
                 } else {
-                    BaseStrBean newConsulist = new Gson().fromJson(userInfo.toString(), new TypeToken<BaseStrBean>() {
-                    }.getType());
-                    String day = newConsulist.getMsg();
-                    ToastUtil(day);
-                    List<String> userdata = newConsulist.getData();
-                    if (userdata != null) {
-                        String gegistinfo = userdata.get(0).toString();
-                        ToastUtil(gegistinfo);
+//                    BaseStrBean newConsulist = new Gson().fromJson(userInfo.toString(), new TypeToken<BaseStrBean>() {
+//                    }.getType());
+//                    String day = newConsulist.getMsg();
+//                    ToastUtil(day);
+//                    List<String> userdata = newConsulist.getData();
+//                    if (userdata != null) {
+//                        String gegistinfo = userdata.get(0).toString();
+                        ToastUtil("registration successful");
                         finish();
-                    }
-                /*    String getUser_id = userdata.getUser_id();
+                        /*    String getUser_id = userdata.getUser_id();
 //                     示例：2(0会员，1工人，2客服)
                     String rolename = "会员";
                     String getPhone = phoneInput.getText().toString();
@@ -314,9 +371,9 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
     @Override
     public void countryList(CountryBean userInfo) {
         Log.i("======00000=======", userInfo.toString());
-        if (userInfo!=null){
+        if (userInfo != null) {
             CountryBean.DataBean getData = userInfo.getData();
-            if (getData.getList()!=null&getData.getList().size()>0){
+            if (getData.getList() != null & getData.getList().size() > 0) {
                 cardItem.clear();
                 cardItem = getData.getList();
                 initCustomOptionPicker();
@@ -336,16 +393,13 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
     public void showToast(String content) {
 
     }
-     List<CountryBean.DataBean.ListBean> cardItem = new ArrayList<>();
 
-
-
-
+    List<CountryBean.DataBean.ListBean> cardItem = new ArrayList<>();
 
 
     private void initCustomOptionPicker() {
 
-      //条件选择器初始化，自定义布局
+        //条件选择器初始化，自定义布局
         /**
          * @description
          *
@@ -358,7 +412,7 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
                 String tx = cardItem.get(options1).getName();
-                 getCountry_id = cardItem.get(options1).getCountry_id();
+                getCountry_id = cardItem.get(options1).getCountry_id();
                 input_country.setText(tx);
             }
         })
@@ -400,5 +454,12 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
         pvCustomOptions.setPicker(cardItem);//添加数据
 
         pvCustomOptions.show();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

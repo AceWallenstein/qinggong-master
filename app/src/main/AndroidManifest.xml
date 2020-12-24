@@ -83,6 +83,8 @@
         <activity android:name=".ui.activity.forgetPwsswordctivity" />
         <activity android:name=".ui.activity.RegeditActivity" />
         <activity android:name=".ui.activity.AppLoginActivity" />
+        <activity android:name=".ui.activity.DisclaimerActivity" />
+        <activity android:name=".ui.activity.PrivacyPolicyActivity" />
     </application>
 
 </manifest>
