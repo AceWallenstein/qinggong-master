@@ -225,9 +225,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("index.php?s=/api/user/register")
     Observable<Object> registerUSER(@FieldMap Map<String, String> queryMap);
-
+    //http://qgshop.meiliancheng.cn/index.php?s=/api/user/forgetPassword
     @FormUrlEncoded
-    @POST("index.php?s=/api/user/findPw")
+    @POST("index.php?s=/api/user/forgetPassword")
     Observable<BaseBean> findPass(@FieldMap Map<String, String> queryMap);
 
     @FormUrlEncoded

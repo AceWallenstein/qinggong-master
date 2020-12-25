@@ -16,6 +16,7 @@ import com.national.qinggong.bean.BaseBean;
 import com.national.qinggong.bean.BaseStrBean;
 import com.national.qinggong.contract.FindPassContract;
 import com.national.qinggong.presenter.FindPassPresenter;
+import com.national.qinggong.util.CheckingUtils;
 import com.national.qinggong.util.StringUtils;
 
 import java.util.HashMap;
@@ -82,7 +83,7 @@ public class forgetPwsswordctivity extends BaseActivity implements FindPassContr
     };
 
 
-    @OnClick({R.id.rl_back, R.id.getYanzhengma, R.id.mima_lin, R.id.login_tv, R.id.have_login_tv})
+    @OnClick({R.id.rl_back, R.id.getYanzhengma, R.id.mima_lin, R.id.relay_submit_tv, R.id.have_login_tv})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_back:
@@ -94,43 +95,51 @@ public class forgetPwsswordctivity extends BaseActivity implements FindPassContr
             case R.id.getYanzhengma:
 
                 if (StringUtils.isEmpty(phoneInput.getText().toString())) {
-                    ToastUtil("请输入手机号");
+                    ToastUtil("Please enter your mobile phone number or email address");
                     return;
                 }
                 sendSms(phoneInput.getText().toString());
                 break;
             case R.id.mima_lin:
                 break;
-            case R.id.login_tv:
+            case R.id.relay_submit_tv:
                 String strphone = phoneInput.getText().toString().trim();
                 String strpwd = passInput.getText().toString().trim();
                 String againstPas = againstPassInput.getText().toString().trim();
                 String strVerificationCode = yanzhengmaInput.getText().toString().trim();
 
                 if (TextUtils.isEmpty(strphone)) {
-                    ToastUtil("请输入手机号");
+                    ToastUtil("Please enter your mobile phone number or email address");
                     return;
                 }
                 if (TextUtils.isEmpty(strVerificationCode)) {
-                    ToastUtil("请输入验证码");
+                    ToastUtil("Please enter a verification code");
                     return;
                 }
                 if (TextUtils.isEmpty(strpwd)) {
-                    ToastUtil("请输入6-12密码");
+                    ToastUtil("Please enter your password ");
                     return;
                 }
                 if (TextUtils.isEmpty(againstPas)) {
-                    ToastUtil("请再次输入6-12密码");
+                    ToastUtil("Please enter your password again");
                     return;
                 }
                 if (!againstPas.equals(strpwd)) {
-                    ToastUtil("两次密码不相同，请重新输入");
+                    ToastUtil("Please confirm password");
                     return;
                 }
-                if (strphone.length() != 11) {
-                    ToastUtil("请输入有效手机号");
+//                if(!CheckingUtils.isChinaPhoneLegal(strphone)||!CheckingUtils.isEmail(strphone)){
+//                    ToastUtil("Please enter the correct email format or mobile phone number");
+//                    return;
+//                }
+                if(!CheckingUtils.isEmail(strphone)){
+                    ToastUtil("Please enter the correct email format");
                     return;
                 }
+//                if (strphone.length() != 11) {
+//                    ToastUtil("请输入有效手机号");
+//                    return;
+//                }
                 userfindpass(strphone, strVerificationCode, againstPas);
                 break;
         }
@@ -139,15 +148,17 @@ public class forgetPwsswordctivity extends BaseActivity implements FindPassContr
 
     private void userfindpass(String phone, String smscode, String password) {
         Map<String, String> map = new HashMap<>();
-        map.put("phone", phone);
-        map.put("smscode", smscode);
+        map.put("account", phone);
         map.put("password", password);
+        map.put("wxapp_id", "10001");
+        map.put("smscode", smscode);
         getPresenter().finPassSubmit(map);
     }
 
     private void sendSms(String phone) {
         Map<String, String> map = new HashMap<>();
-        map.put("phone", phone);
+        map.put("email", phone);
+        map.put("wxapp_id", "10001");
         getPresenter().getsendSms(map);
     }
 
@@ -174,7 +185,12 @@ public class forgetPwsswordctivity extends BaseActivity implements FindPassContr
 
     @Override
     public void refreshfinPassSubmit(BaseBean userInfo) {
-        ToastUtil(userInfo.getMsg());
+        if (userInfo.getCode() == 1) {
+            ToastUtil("Password modified successfully");
+            finish();
+        } else {
+            ToastUtil(userInfo.getMsg());
+        }
     }
 
     @Override

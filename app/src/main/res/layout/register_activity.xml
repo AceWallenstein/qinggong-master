@@ -90,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_30dp"
-                    android:text="Phone/Email"
+                    android:text="Email"
                     android:textColor="#ffb8c7e6"
                     android:textSize="12sp" />
 
@@ -103,13 +103,13 @@
 
 
                     <EditText
+                        android:hint="Please input account"
                         android:id="@+id/phone_input"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
-                        android:text=""
                         android:textColor="@color/black"
-                        android:textColorHint="@color/black"
+                        android:textColorHint="@color/grey"
                         android:textSize="14sp" />
 
                     <View
@@ -137,6 +137,8 @@
                     android:visibility="visible">
 
                     <EditText
+                        android:hint="Please input password"
+                        android:textColorHint="@color/grey"
                         android:inputType="textPassword"
                         android:id="@+id/pass_input"
                         android:layout_width="match_parent"
@@ -171,6 +173,8 @@
                     android:visibility="visible">
 
                     <EditText
+                        android:hint="Please input password again"
+                        android:textColorHint="@color/grey"
                         android:inputType="textPassword"
                         android:id="@+id/against_pass"
                         android:layout_width="match_parent"
@@ -196,7 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_39dp"
-                    android:text="Verification Code"
+                    android:text="Captcha"
                     android:textColor="#ffb8c7e6"
                     android:textSize="12sp" />
 
@@ -218,7 +222,8 @@
                             android:layout_height="match_parent"
                             android:layout_weight="4"
                             android:background="@null"
-
+                            android:textColorHint="@color/grey"
+                            android:hint="Please input captcha"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
@@ -268,11 +273,18 @@
                     android:visibility="visible">
 
                     <LinearLayout
+                        android:id="@+id/country_lin"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
                         <EditText
+                            android:hint="Please select country"
+                            android:textColorHint="@color/grey"
+                            android:inputType="none"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:clickable="false"
                             android:id="@+id/input_country"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -282,13 +294,14 @@
                             android:textSize="14sp" />
 
                         <LinearLayout
-                            android:id="@+id/country_lin"
+                            android:clickable="false"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:layout_weight="1">
 
                             <ImageView
+                                android:clickable="false"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"

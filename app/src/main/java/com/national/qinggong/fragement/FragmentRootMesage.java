@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,12 +20,10 @@ import com.national.qinggong.bean.ChatMessageEvent;
 import com.national.qinggong.bean.HomeBean;
 import com.national.qinggong.bean.MyMessageBean;
 import com.national.qinggong.bean.RefreshUrl;
-import com.national.qinggong.bean.SearchShopListBean;
 import com.national.qinggong.contract.MyMessageContract;
 import com.national.qinggong.customview.CornerTransform;
 import com.national.qinggong.customview.EmptyLayout;
 import com.national.qinggong.presenter.MyMessagePresenter;
-import com.national.qinggong.presenter.SearchShopListPresenter;
 import com.national.qinggong.ui.activity.PlatformForFragmentActivity;
 import com.national.qinggong.util.CacheHelper;
 
@@ -32,21 +31,24 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
+
 //MyMessagePresenter
 public class FragmentRootMesage extends BaseFragment implements MyMessageContract.View {
     @BindView(R.id.message_recycleview)
     RecyclerView messageRecycleview;
+    Unbinder unbinder;
     private JoneBaseAdapter<HomeBean> mJobDataAdapter;
     @BindView(R.id.twinkling_refreshlayout)
     TwinklingRefreshLayout twinkling_refreshlayout;
@@ -57,6 +59,7 @@ public class FragmentRootMesage extends BaseFragment implements MyMessageContrac
 
     @BindView(R.id.emptyLayout)
     EmptyLayout emptyLayout;
+
     public static FragmentRootMesage newInstance() {
         Bundle args = new Bundle();
 //        args.putBoolean(ISSHOWIING, isShow);
@@ -64,6 +67,7 @@ public class FragmentRootMesage extends BaseFragment implements MyMessageContrac
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     protected MyMessagePresenter getPresenter() {
         return new MyMessagePresenter(_mActivity, FragmentRootMesage.this);
@@ -117,8 +121,8 @@ public class FragmentRootMesage extends BaseFragment implements MyMessageContrac
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(!hidden){
-            if(twinkling_refreshlayout!=null){
+        if (!hidden) {
+            if (twinkling_refreshlayout != null) {
                 twinkling_refreshlayout.startRefresh();
             }
         }
@@ -127,7 +131,7 @@ public class FragmentRootMesage extends BaseFragment implements MyMessageContrac
     @Override
     public void onResume() {
         super.onResume();
-        if(twinkling_refreshlayout!=null){
+        if (twinkling_refreshlayout != null) {
             twinkling_refreshlayout.startRefresh();
         }
     }
@@ -143,30 +147,29 @@ public class FragmentRootMesage extends BaseFragment implements MyMessageContrac
             @Override
             public void fillItemData(BGAViewHolderHelper helper, int position, MyMessageBean.DataBeanX.ListBean.DataBean model) {
                 helper.setText(R.id.username, model.getNickName() + "");
-                helper.setText(R.id.content, model.getContent()+ "");
-                if(model.getNew_num()>0){
-                    helper.setVisibility(R.id.xiaoxi_num,View.VISIBLE);
-                }else{
-                    helper.setVisibility(R.id.xiaoxi_num,View.GONE);
+                helper.setText(R.id.content, model.getContent() + "");
+                if (model.getNew_num() > 0) {
+                    helper.setVisibility(R.id.xiaoxi_num, View.VISIBLE);
+                } else {
+                    helper.setVisibility(R.id.xiaoxi_num, View.GONE);
                 }
-                helper.setText(R.id.xiaoxi_num, model.getNew_num()+ "");
+                helper.setText(R.id.xiaoxi_num, model.getNew_num() + "");
 
 
                 //Today  Yseterday
-                Log.i("test","聊天列表时间：="+time(model.getCreate_time()*1000));
+                Log.i("test", "聊天列表时间：=" + time(model.getCreate_time() * 1000));
                 //2020-10-17 17:22
                 //String times1[]=(time(model.getCreate_time()*1000)).split(" ");
                 //String times[]=times1[0].split("-");
-               // helper.setText(R.id.time_create, times[2] + "-"+times[1]+"-"+times[0]+" "+times1[1]);
+                // helper.setText(R.id.time_create, times[2] + "-"+times[1]+"-"+times[0]+" "+times1[1]);
 
-                if (time(model.getCreate_time()*1000).contains("Today")||time(model.getCreate_time()*1000).contains("Yseterday")){
-                    helper.setText(R.id.time_create, time(model.getCreate_time()*1000));
-                }else{
-                    String times1[]=(time(model.getCreate_time()*1000)).split(" ");
-                    String times[]=times1[0].split("-");
-                     helper.setText(R.id.time_create, times[2] + "-"+times[1]+"-"+times[0]+" "+times1[1]);
+                if (time(model.getCreate_time() * 1000).contains("Today") || time(model.getCreate_time() * 1000).contains("Yseterday")) {
+                    helper.setText(R.id.time_create, time(model.getCreate_time() * 1000));
+                } else {
+                    String times1[] = (time(model.getCreate_time() * 1000)).split(" ");
+                    String times[] = times1[0].split("-");
+                    helper.setText(R.id.time_create, times[2] + "-" + times[1] + "-" + times[0] + " " + times1[1]);
                 }
-
 
 
                 //helper.setText(R.id.time_create, time(model.getCreate_time()*1000));
@@ -187,12 +190,13 @@ public class FragmentRootMesage extends BaseFragment implements MyMessageContrac
                 MyMessageBean.DataBeanX.ListBean.DataBean currentbean = rightDataAdapter.getItem(position);
                 Bundle Bundle_about = new Bundle();
                 Bundle_about.putInt("type", 34);
-                Bundle_about.putString("user_id",currentbean.getTo_user_id()+"");
+                Bundle_about.putString("user_id", currentbean.getTo_user_id() + "");
                 PlatformForFragmentActivity.newInstance(_mActivity, Bundle_about);
             }
         });
 
     }
+
     public static String time(long time) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         SimpleDateFormat hose = new SimpleDateFormat("HH:mm");
@@ -214,6 +218,7 @@ public class FragmentRootMesage extends BaseFragment implements MyMessageContrac
 
         return res;
     }
+
     /**
      * 是否为今天
      */
@@ -241,6 +246,7 @@ public class FragmentRootMesage extends BaseFragment implements MyMessageContrac
         }
         return false;
     }
+
     @Subscribe
     public void refreshData(RefreshUrl refreshUrl) {
         if (null == refreshUrl) {
@@ -320,5 +326,24 @@ public class FragmentRootMesage extends BaseFragment implements MyMessageContrac
     @Override
     public void showToast(String content) {
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick(R.id.iv_go_back)
+    public void onViewClicked() {
+        getActivity().finish();
     }
 }

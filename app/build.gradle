@@ -96,4 +96,8 @@ dependencies {
    // implementation 'com.youth.banner:banner:2.1.0'
     //https://github.com/felipecsl/GifImageView
     implementation 'com.felipecsl:gifimageview:2.2.0'
+
+    //弹窗
+    implementation 'cn.yc:YCDialogLib:3.6.6'
+
 }

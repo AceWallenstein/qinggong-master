@@ -58,7 +58,7 @@
                         android:layout_centerInParent="true"
                         android:text="Head Portrait"
                         android:textColor="#ff9ba8c2"
-                        android:textSize="17sp" />
+                        android:textSize="14sp" />
 
                     <com.gcssloop.widget.RCRelativeLayout
                         android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
                         android:layout_centerInParent="true"
                         android:text="User Name"
                         android:textColor="#ff9ba8c2"
-                        android:textSize="17sp" />
+                        android:textSize="14sp" />
 
 
                     <EditText
@@ -110,10 +110,10 @@
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:gravity="right|center"
-                        android:hint="Please enter"
+                        android:hint="Please input name"
                         android:text=""
                         android:textColor="#ff333333"
-                        android:textSize="17sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -142,7 +142,7 @@
                         android:layout_centerInParent="true"
                         android:text="Mailbox"
                         android:textColor="#ff9ba8c2"
-                        android:textSize="17sp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -198,19 +198,20 @@
                         android:layout_centerInParent="true"
                         android:text="Phone"
                         android:textColor="#ff9ba8c2"
-                        android:textSize="17sp" />
+                        android:textSize="14sp" />
 
 
                     <EditText
+                        android:inputType="number"
                         android:id="@+id/phone_info"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:gravity="center|right"
-                        android:hint="Please enter"
+                        android:hint="Please input phone number"
                         android:text=""
                         android:textColor="#ff333333"
-                        android:textSize="17sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -239,7 +240,7 @@
                         android:layout_centerInParent="true"
                         android:text="Country"
                         android:textColor="#ff9ba8c2"
-                        android:textSize="17sp" />
+                        android:textSize="14sp" />
 
 
                     <TextView
@@ -249,10 +250,9 @@
                         android:drawableRight="@mipmap/fanhui_jiantou"
                         android:drawablePadding="@dimen/padding_5dp"
                         android:gravity="center|right"
-                        android:hint="Please select"
-                        android:text="sss"
+                        android:hint="Please select Country"
                         android:textColor="#ff333333"
-                        android:textSize="17sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 

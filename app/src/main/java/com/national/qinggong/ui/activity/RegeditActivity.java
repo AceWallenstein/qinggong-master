@@ -33,6 +33,7 @@ import com.national.qinggong.bean.CountryBean;
 import com.national.qinggong.contract.RegeditContract;
 import com.national.qinggong.presenter.RegeditPresenter;
 import com.national.qinggong.util.ActivityUtils;
+import com.national.qinggong.util.CheckingUtils;
 import com.national.qinggong.util.CommonUtils;
 import com.national.qinggong.util.StringUtils;
 
@@ -96,6 +97,8 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
 //        sStr.setSpan(new ForegroundColorSpan(Color.parseColor("#D20B17")), 70, 87, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 //        sStr.setSpan(new ForegroundColorSpan(Color.parseColor("#D20B17")), 92, 107, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 //        text.setText(sStr);
+        input_country.setMovementMethod(null);
+        input_country.setKeyListener(null);
         final String linkWord1 = "Conditions of Use";
         final String linkWord2 = "Privacy Notice";
         String word = "By creating an account, you agree that you have read and accepted our  " + linkWord1 + " and " + linkWord2;//Conditions of Use and Privacy Notice.
@@ -234,7 +237,7 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
                 String strVerificationCode = yanzhengmaInput.getText().toString().trim();
 
                 if (TextUtils.isEmpty(strphone)) {
-                    ToastUtil("Please enter your cell email");
+                    ToastUtil("Please enter your email address");
                     return;
                 }
                 if (TextUtils.isEmpty(strVerificationCode)) {
@@ -251,6 +254,10 @@ public class RegeditActivity extends BaseActivity implements RegeditContract.Vie
                 }
                 if (!against_pwd.equals(strpwd)) {
                     ToastUtil("Please confirm password");
+                    return;
+                }
+                if(!CheckingUtils.isEmail(strphone)){
+                    ToastUtil("Please enter the correct email format");
                     return;
                 }
 

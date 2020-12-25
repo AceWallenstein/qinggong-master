@@ -91,7 +91,7 @@ public class SexDialogFragment extends AppCompatDialogFragment {
             @Override
             public void onClick(View v) {
                 IndexCountryBean.DataBean.ListBean dataBean = list.get(index);
-                ToastUtilMsg.showToast(v.getContext(), dataBean.getName());
+//                ToastUtilMsg.showToast(v.getContext(), dataBean.getName());
                onClickListener.result(dataBean);
                 dismiss();
             }
